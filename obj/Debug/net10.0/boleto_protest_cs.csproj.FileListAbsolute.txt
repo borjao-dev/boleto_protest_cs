@@ -1,0 +1,15 @@
+/mnt/workspace/code/dev/borjovsky/boleto_protest_cs/bin/Debug/net10.0/boleto_protest_cs
+/mnt/workspace/code/dev/borjovsky/boleto_protest_cs/bin/Debug/net10.0/boleto_protest_cs.deps.json
+/mnt/workspace/code/dev/borjovsky/boleto_protest_cs/bin/Debug/net10.0/boleto_protest_cs.runtimeconfig.json
+/mnt/workspace/code/dev/borjovsky/boleto_protest_cs/bin/Debug/net10.0/boleto_protest_cs.dll
+/mnt/workspace/code/dev/borjovsky/boleto_protest_cs/bin/Debug/net10.0/boleto_protest_cs.pdb
+/mnt/workspace/code/dev/borjovsky/boleto_protest_cs/obj/Debug/net10.0/boleto_protest_cs.GeneratedMSBuildEditorConfig.editorconfig
+/mnt/workspace/code/dev/borjovsky/boleto_protest_cs/obj/Debug/net10.0/boleto_protest_cs.AssemblyInfoInputs.cache
+/mnt/workspace/code/dev/borjovsky/boleto_protest_cs/obj/Debug/net10.0/boleto_protest_cs.AssemblyInfo.cs
+/mnt/workspace/code/dev/borjovsky/boleto_protest_cs/obj/Debug/net10.0/boleto_protest_cs.csproj.CoreCompileInputs.cache
+/mnt/workspace/code/dev/borjovsky/boleto_protest_cs/obj/Debug/net10.0/boleto_protest_cs.sourcelink.json
+/mnt/workspace/code/dev/borjovsky/boleto_protest_cs/obj/Debug/net10.0/boleto_protest_cs.dll
+/mnt/workspace/code/dev/borjovsky/boleto_protest_cs/obj/Debug/net10.0/refint/boleto_protest_cs.dll
+/mnt/workspace/code/dev/borjovsky/boleto_protest_cs/obj/Debug/net10.0/boleto_protest_cs.pdb
+/mnt/workspace/code/dev/borjovsky/boleto_protest_cs/obj/Debug/net10.0/boleto_protest_cs.genruntimeconfig.cache
+/mnt/workspace/code/dev/borjovsky/boleto_protest_cs/obj/Debug/net10.0/ref/boleto_protest_cs.dll
