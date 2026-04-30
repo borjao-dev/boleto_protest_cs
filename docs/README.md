@@ -20,7 +20,7 @@ Automatiza o processo completo de recebimento e repasse de boletos de condomíni
 | CPF (4 primeiros dígitos) | `4776` |
 | Pasta de destino do PDF | `D:\DALGIZA\Condominios\1509-A` |
 | Template de email no Gmail | `Boleto PROTEST ap 1509-A 336 Laranjeiras` |
-| Email do destinatário | Email da imobiliária (Daniel) |
+| Email do destinatário | <danieloliveiracorretor222@gmail.com> |
 | Apartamentos gerenciados | 1509-A, 1508-A, 1503-A, 1515-B |
 
 ---
@@ -50,3 +50,13 @@ Automatiza o processo completo de recebimento e repasse de boletos de condomíni
 | PDF não baixa | O programa permite salvar manualmente e continua |
 | Chrome não abre corretamente | Verificar o caminho do perfil do Chrome nas configurações |
 | Timeout ao buscar email | Abrir o Chrome manualmente para verificar o site |
+
+---
+
+## Possíveis melhorias futuras
+
+- Criação de GUI para permitir seleção de opções para o usuário
+- Fazer com que TODOS os dados sejam opções definíveis pelo usuário (tanto de modo "permanente" - salvo em configs/modelos individuais - quanto imediata, na própria GUI)
+- Em caso de falha devido a fatores externos (por exemplo, PROTEST mudou o formato que apresenta datas de 'dd/MM/yyyy' para 'yyyy-MM-dd'), exibir alerta para o usuário informando sobre o problema específico, e pedindo para entrar em contato com o desenvolvedor (<r.borjovsky@gmail.com>)
+- Melhorias e otimizações de código e performance
+- Ampliar o programa, criando mais opções e comodidades para o usuário (pensar em como poderia ser um automatizador desse tipo, mas não especificamente para Dalgiza, e sim para o público/empresas em geral)
