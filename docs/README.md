@@ -60,3 +60,4 @@ Automatiza o processo completo de recebimento e repasse de boletos de condomíni
 - Em caso de falha devido a fatores externos (por exemplo, PROTEST mudou o formato que apresenta datas de 'dd/MM/yyyy' para 'yyyy-MM-dd'), exibir alerta para o usuário informando sobre o problema específico, e pedindo para entrar em contato com o desenvolvedor (<r.borjovsky@gmail.com>)
 - Melhorias e otimizações de código e performance
 - Ampliar o programa, criando mais opções e comodidades para o usuário (pensar em como poderia ser um automatizador desse tipo, mas não especificamente para Dalgiza, e sim para o público/empresas em geral)
+- Fazer versão mobile, web e outras
