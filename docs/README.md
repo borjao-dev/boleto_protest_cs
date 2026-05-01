@@ -21,7 +21,7 @@ Automatiza o processo completo de recebimento e repasse de boletos de condomíni
 | Pasta de destino do PDF | `D:\DALGIZA\Condominios\1509-A` |
 | Template de email no Gmail | `Boleto PROTEST ap 1509-A 336 Laranjeiras` |
 | Email do destinatário | <danieloliveiracorretor222@gmail.com> |
-| Apartamentos gerenciados | 1509-A, 1508-A, 1503-A, 1515-B |
+| Apartamentos gerenciados | `1509-A`, `1508-A`, `1503-A`, `1515-B` |
 
 ---
 
