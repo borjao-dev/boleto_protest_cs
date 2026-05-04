@@ -1,7 +1,9 @@
-using BoletoProtest.Core.Models;
 using BoletoProtest.Console.Services;
+using BoletoProtest.Core.Models;
+using BoletoProtest.Infrastructure.Services;
 
-public class Program {
+public class Program
+{
     public static void Main(string[] args)
     {
         string env = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Production";

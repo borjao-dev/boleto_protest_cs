@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <ItemGroup>
     <ProjectReference Include="..\BoletoProtest.Core\BoletoProtest.Core.csproj" />
     <ProjectReference Include="..\BoletoProtest.Infrastructure\BoletoProtest.Infrastructure.csproj" />
@@ -21,5 +20,4 @@
     <Nullable>enable</Nullable>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
-
 </Project>
