@@ -18,13 +18,13 @@ public class FileService
 
         if (diretorio is null)
         {
-            Console.WriteLine($"Caminho de destino inválido nas configurações!");
+            Console.Write("Caminho de destino inválido nas configurações!");
             return;
         }
 
         if (!Directory.Exists(diretorio))
         {
-            Console.WriteLine($"O caminho '{diretorio}' não existe!");
+            Console.Write($"O caminho '{diretorio}' não existe!");
             return;
         }
 
@@ -34,7 +34,7 @@ public class FileService
         }
         catch (UnauthorizedAccessException ex)
         {
-            Console.WriteLine($"Erro de autorização para salvar o arquivo! => {ex.Message}");
+            Console.Write($"Erro de autorização para salvar o arquivo! => {ex.Message}");
         }
     }
 }

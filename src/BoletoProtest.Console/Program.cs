@@ -10,9 +10,9 @@ public class Program
         ConfigurationService confServ = new ConfigurationService();
         AppConfig appConf = confServ.AppConfiguration();
 
-        Console.Write("Confirmando configuração:\n");
-        Console.Write($"ENV => {env}\n");
-        Console.Write($"Prefixo CPF => {appConf.CpfPrefixo}\n");
-        Console.Write($"Pasta Destino => {appConf.PastaDestino}\n");
+        Console.WriteLine("Confirmando configuração:");
+        Console.WriteLine($"ENV => {env}");
+        Console.WriteLine($"Prefixo CPF => {appConf.CpfPrefixo}");
+        Console.WriteLine($"Pasta Destino => {appConf.PastaDestino}");
     }
 }
