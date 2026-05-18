@@ -487,3 +487,4 @@ $RECYCLE.BIN/
 # Google OAuth credentials
 **/client_secret*.json
 credentials.json
+token.json

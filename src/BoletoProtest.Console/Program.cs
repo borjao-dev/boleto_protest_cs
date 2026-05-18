@@ -1,6 +1,5 @@
 using BoletoProtest.Console.Services;
 using BoletoProtest.Core.Models;
-using BoletoProtest.Infrastructure.Services;
 
 public class Program
 {
