@@ -1,4 +1,5 @@
 using System.Buffers.Text;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Net;
 using System.Security.Cryptography;
@@ -12,10 +13,11 @@ namespace BoletoProtest.Infrastructure.Services;
 public class GmailAuthService
 {
     private static readonly HttpClient _clientePost = new();
+    private const string Porta = "5000";
 
-    public async Task<string> GetAccessTokenAsync()
+    public static async Task<string> BuscaTokenDeAcessoAsync()
     {
-        GmailOAuthToken? token = LoadTokenFromDisk();
+        GmailOAuthToken? token = CarregarTokenDoDisco();
 
         string caminhoToken = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
@@ -28,22 +30,20 @@ public class GmailAuthService
         {
             if (token.IsExpired)
             {
-                token = await RefreshAccessTokenAsync(caminhoToken, token);
+                token = await RenovaTokenDeAcessoAsync(caminhoToken, token);
             }
         }
         else
         {
-            token = await AuthorizeAsync();
+            token = await AutorizaAsync();
 
-            string serializiedToken = JsonSerializer.Serialize(token);
-
-            File.WriteAllText(caminhoToken, serializiedToken);
+            SalvarTokenEmDisco(caminhoToken, token);
         }
 
         return token.AccessToken;
     }
 
-    private GmailOAuthToken? LoadTokenFromDisk()
+    private static GmailOAuthToken? CarregarTokenDoDisco()
     {
         string caminho = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
@@ -69,10 +69,14 @@ public class GmailAuthService
         return null;
     }
 
-    private async Task<GmailOAuthToken> RefreshAccessTokenAsync(
-        string caminhoToken,
-        GmailOAuthToken antigoToken
-    )
+    private static void SalvarTokenEmDisco(string caminhoToken, GmailOAuthToken token)
+    {
+        string serializiedToken = JsonSerializer.Serialize(token);
+
+        File.WriteAllText(caminhoToken, serializiedToken);
+    }
+
+    private static GmailCredentialsInstalled CarregarCredenciais()
     {
         string caminhoCredenciais = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
@@ -102,16 +106,31 @@ public class GmailAuthService
             throw new ArgumentNullException("Erro: Credenciais NULL!");
         }
 
-        var dadosForm = new Dictionary<string, string>
+        return credenciais;
+    }
+
+    private static async Task<GmailOAuthToken> RenovaTokenDeAcessoAsync(
+        string caminhoToken,
+        GmailOAuthToken antigoToken
+    )
+    {
+        GmailCredentialsInstalled credenciais = CarregarCredenciais();
+
+        Dictionary<string, string> dadosForm = new()
         {
             { "grant_type", "refresh_token" },
-            { "refresh_token", antigoToken?.RefreshToken ?? "" },
+            { "refresh_token", antigoToken.RefreshToken },
             { "client_id", credenciais.ClientId },
             { "client_secret", credenciais.ClientSecret },
         };
 
-        using var conteudoPost = new FormUrlEncodedContent(dadosForm);
-        var resposta = await _clientePost.PostAsync(credenciais.TokenUri, conteudoPost);
+        using FormUrlEncodedContent conteudoPost = new(dadosForm);
+
+        HttpResponseMessage resposta = await _clientePost.PostAsync(
+            credenciais.TokenUri,
+            conteudoPost
+        );
+
         resposta.EnsureSuccessStatusCode();
 
         string resultado = await resposta.Content.ReadAsStringAsync();
@@ -120,44 +139,16 @@ public class GmailAuthService
             JsonSerializer.Deserialize<GmailOAuthToken>(resultado)
             ?? throw new JsonException("Resposta inválida do servidor de tokens.");
 
-        tokenRetornado.RefreshToken = antigoToken?.RefreshToken ?? "";
+        tokenRetornado.RefreshToken = antigoToken.RefreshToken;
 
-        string novoToken = JsonSerializer.Serialize(tokenRetornado);
-
-        File.WriteAllText(caminhoToken, novoToken);
+        SalvarTokenEmDisco(caminhoToken, tokenRetornado);
 
         return tokenRetornado;
     }
 
-    private async Task<GmailOAuthToken> AuthorizeAsync()
+    private static async Task<GmailOAuthToken> AutorizaAsync()
     {
-        string caminhoCredenciais = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-            ".config",
-            "boletoprotest",
-            "credentials.json"
-        );
-
-        GmailCredentialsInstalled? credenciais = null;
-
-        if (File.Exists(caminhoCredenciais))
-        {
-            string conteudo = File.ReadAllText(caminhoCredenciais);
-
-            try
-            {
-                credenciais = JsonSerializer.Deserialize<GmailCredentials>(conteudo)?.Installed;
-            }
-            catch (JsonException jex)
-            {
-                Console.Write($"Erro: Arquivo JSON corrompido! => {jex.Message}");
-            }
-        }
-
-        if (credenciais is null)
-        {
-            throw new ArgumentNullException("Erro: Credenciais NULL!");
-        }
+        GmailCredentialsInstalled credenciais = CarregarCredenciais();
 
         /*
             O PKCE (code_verifier + code_challenge) é uma proteção extra:
@@ -171,12 +162,12 @@ public class GmailAuthService
         byte[] challengeBytes = SHA256.HashData(verifierBytes);
         string codeChallengeAleatorio = Base64Url.EncodeToString(challengeBytes);
 
-        var builder = new UriBuilder(credenciais.AuthUri);
-        string porta = "5000";
-        string redirectUri =
-            $"{credenciais.RedirectUris[0] ?? "http://localhost"}:{porta}/".Replace("/:", ":");
+        UriBuilder builder = new(credenciais.AuthUri);
 
-        var query = HttpUtility.ParseQueryString(builder.Query);
+        string redirectUri =
+            $"{credenciais.RedirectUris[0] ?? "http://localhost"}:{Porta}/".Replace("/:", ":");
+
+        NameValueCollection query = HttpUtility.ParseQueryString(builder.Query);
         query["client_id"] = credenciais.ClientId;
         query["redirect_uri"] = redirectUri;
         query["response_type"] = "code";
@@ -197,12 +188,12 @@ public class GmailAuthService
         {
             int limiteTempo = 120;
 
-            using var listener = new HttpListener();
+            using HttpListener listener = new();
             listener.Prefixes.Add(redirectUri);
             listener.Start();
 
-            var contextTask = listener.GetContextAsync();
-            var timeoutTask = Task.Delay(TimeSpan.FromSeconds(limiteTempo));
+            Task<HttpListenerContext> contextTask = listener.GetContextAsync();
+            Task timeoutTask = Task.Delay(TimeSpan.FromSeconds(limiteTempo));
 
             if (await Task.WhenAny(contextTask, timeoutTask) == timeoutTask)
             {
@@ -210,7 +201,7 @@ public class GmailAuthService
                 throw new OperationCanceledException("Tempo limite de autorização excedido.");
             }
 
-            var context = await contextTask;
+            HttpListenerContext context = await contextTask;
             code = context.Request.QueryString["code"];
 
             context.Response.StatusCode = 200;
@@ -230,7 +221,7 @@ public class GmailAuthService
             Console.Write($"Erro: Operação cancelada! => {ocex.Message}");
         }
 
-        var dadosForm = new Dictionary<string, string>
+        Dictionary<string, string> dadosForm = new()
         {
             { "code", code ?? "" },
             { "client_id", credenciais.ClientId },
@@ -240,8 +231,11 @@ public class GmailAuthService
             { "code_verifier", codeVerifierAleatorio },
         };
 
-        using var conteudoPost = new FormUrlEncodedContent(dadosForm);
-        var resposta = await _clientePost.PostAsync(credenciais.TokenUri, conteudoPost);
+        using FormUrlEncodedContent conteudoPost = new(dadosForm);
+        HttpResponseMessage resposta = await _clientePost.PostAsync(
+            credenciais.TokenUri,
+            conteudoPost
+        );
         resposta.EnsureSuccessStatusCode();
 
         string resultado = await resposta.Content.ReadAsStringAsync();
