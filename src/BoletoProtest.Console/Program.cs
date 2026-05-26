@@ -6,7 +6,7 @@ public class Program
     public static void Main(string[] args)
     {
         string env = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Production";
-        ConfigurationService confServ = new ConfigurationService();
+        ConfigurationService confServ = new();
         AppConfig appConf = confServ.AppConfiguration();
 
         Console.WriteLine("Confirmando configuração:");

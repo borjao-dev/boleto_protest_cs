@@ -1,5 +1,6 @@
 using System.Net.Http.Headers;
 using System.Text.Json;
+using BoletoProtest.Core.Models;
 using BoletoProtest.Infrastructure.Models;
 
 namespace BoletoProtest.Infrastructure.Services;
@@ -12,15 +13,15 @@ public class GmailSearchService
 
     private const string Caminho = "/gmail/v1/users/me/messages";
 
-    private const string Consulta = "?q=subject";
-
-    private const string TermoBusca = ":PROTEST";
+    private const string Consulta = "?q=";
 
     private static readonly HttpClient _clienteGet = new();
 
-    public static async Task<GmailFilteredEmails> BuscaEmailsContendoTermo()
+    public static async Task<GmailFilteredEmails> BuscaEmailsContendoTermo(AppConfig appConf)
     {
-        string uri = $"{Protocolo}{Dominio}{Caminho}{Consulta}{TermoBusca}";
+        string filtragem = $"subject:\"{appConf.AssuntoEmail}\" from:{appConf.EmailRemetente}";
+
+        string uri = $"{Protocolo}{Dominio}{Caminho}{Consulta}{Uri.EscapeDataString(filtragem)}";
 
         string tokenDeAcesso = await GmailAuthService.BuscaTokenDeAcessoAsync();
 
