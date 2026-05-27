@@ -15,29 +15,29 @@ public class GmailAuthService
     private static readonly HttpClient _clientePost = new();
     private const string Porta = "5000";
 
+    private static readonly string CaminhoToken = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+        ".config",
+        "boletoprotest",
+        "token.json"
+    );
+
     public static async Task<string> BuscaTokenDeAcessoAsync()
     {
         GmailOAuthToken? token = CarregarTokenDoDisco();
-
-        string caminhoToken = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-            ".config",
-            "boletoprotest",
-            "token.json"
-        );
 
         if (token is not null)
         {
             if (token.IsExpired)
             {
-                token = await RenovaTokenDeAcessoAsync(caminhoToken, token);
+                token = await RenovaTokenDeAcessoAsync(CaminhoToken, token);
             }
         }
         else
         {
             token = await AutorizaAsync();
 
-            SalvarTokenEmDisco(caminhoToken, token);
+            SalvarTokenEmDisco(CaminhoToken, token);
         }
 
         return token.AccessToken;
@@ -221,9 +221,14 @@ public class GmailAuthService
             Console.Write($"Erro: Operação cancelada! => {ocex.Message}");
         }
 
+        if (code is null)
+        {
+            throw new InvalidOperationException("Falha na autorização: código não recebido.");
+        }
+
         Dictionary<string, string> dadosForm = new()
         {
-            { "code", code ?? "" },
+            { "code", code },
             { "client_id", credenciais.ClientId },
             { "client_secret", credenciais.ClientSecret },
             { "redirect_uri", redirectUri },

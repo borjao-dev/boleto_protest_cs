@@ -18,6 +18,24 @@ public class GmailMessagesPayload
 
     [JsonPropertyName("body")]
     public GmailMessagesBody Body { get; set; } = new();
+
+    [JsonPropertyName("mimeType")]
+    public string MimeType { get; set; } = "";
+
+    [JsonPropertyName("parts")]
+    public List<GmailMessagesParts> Parts { get; set; } = [];
+}
+
+public class GmailMessagesParts
+{
+    [JsonPropertyName("body")]
+    public GmailMessagesBody Body { get; set; } = new();
+
+    [JsonPropertyName("mimeType")]
+    public string MimeType { get; set; } = "";
+
+    [JsonPropertyName("parts")]
+    public List<GmailMessagesParts> Parts { get; set; } = [];
 }
 
 public class GmailMessagesHeaders

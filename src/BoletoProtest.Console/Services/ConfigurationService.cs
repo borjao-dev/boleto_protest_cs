@@ -5,7 +5,7 @@ namespace BoletoProtest.Console.Services;
 
 public class ConfigurationService
 {
-    public AppConfig AppConfiguration()
+    public static AppConfig AppConfiguration()
     {
         string env = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Production";
         string basePath = AppContext.BaseDirectory;

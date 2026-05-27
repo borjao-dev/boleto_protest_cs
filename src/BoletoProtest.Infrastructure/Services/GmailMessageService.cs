@@ -17,7 +17,7 @@ public class GmailMessageService
 
     private static readonly HttpClient _clienteGet = new();
 
-    public static async Task<List<GmailMessages>> BuscaMensagensGmail(AppConfig appConf)
+    private static async Task<List<GmailMessages>> BuscaMensagensGmail(AppConfig appConf)
     {
         GmailFilteredEmails ids = await GmailSearchService.BuscaEmailsContendoTermo(appConf);
 
@@ -48,7 +48,7 @@ public class GmailMessageService
         return lista;
     }
 
-    public static async Task<List<string>> FiltraEmailsPorData(AppConfig appConf)
+    private static async Task<List<string>> FiltraEmailsPorData(AppConfig appConf)
     {
         DateTime mesQueVem = DateTime.Now.AddMonths(1);
         string vencimento = mesQueVem.ToString("MM/yyyy");
@@ -59,7 +59,15 @@ public class GmailMessageService
 
         foreach (GmailMessages mensagem in mensagensGmail)
         {
-            string corpo = mensagem.Payload.Body.Data;
+            List<GmailMessagesParts> partes = mensagem.Payload.Parts;
+            GmailMessagesParts? parteHtml = partes.FirstOrDefault(p => p.MimeType == "text/html");
+
+            if (parteHtml is null)
+            {
+                continue;
+            }
+
+            string corpo = parteHtml.Body.Data;
             string base64Padrao = corpo.Replace('-', '+').Replace('_', '/');
             byte[] bytes = Convert.FromBase64String(base64Padrao);
             string conteudo = Encoding.UTF8.GetString(bytes);
@@ -78,5 +86,24 @@ public class GmailMessageService
         }
 
         return urlsBoletos;
+    }
+
+    public static async Task BaixaPDF(AppConfig appConf)
+    {
+        List<string> listaUrls = await FiltraEmailsPorData(appConf);
+
+        using HttpClient clienteGet = new();
+
+        foreach (string url in listaUrls)
+        {
+            HttpResponseMessage resposta = await clienteGet.GetAsync(url);
+            resposta.EnsureSuccessStatusCode();
+
+            byte[] bytes = await resposta.Content.ReadAsByteArrayAsync();
+
+            Boleto boleto = new(url, "apartamento_aqui", DateTime.Now.AddMonths(1));
+
+            await FileService.SalvaArquivoPDF(bytes, boleto, appConf);
+        }
     }
 }

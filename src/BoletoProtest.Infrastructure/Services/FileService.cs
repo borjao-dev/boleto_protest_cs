@@ -4,14 +4,14 @@ namespace BoletoProtest.Infrastructure.Services;
 
 public class FileService
 {
-    private string CaminhoCompletoDoArquivo(Boleto boleto, AppConfig appConf)
+    private static string CaminhoCompletoDoArquivo(Boleto boleto, AppConfig appConf)
     {
         string nomeArquivo = $"Vencimento_{boleto.Vencimento:dd-MM-yyyy}.pdf";
 
         return Path.Combine(appConf.PastaDestino, nomeArquivo);
     }
 
-    public async Task SalvaArquivoPDF(byte[] conteudoPDF, Boleto boleto, AppConfig appConf)
+    public static async Task SalvaArquivoPDF(byte[] conteudoPDF, Boleto boleto, AppConfig appConf)
     {
         string caminhoCompleto = CaminhoCompletoDoArquivo(boleto, appConf);
         string? diretorio = Path.GetDirectoryName(caminhoCompleto);
