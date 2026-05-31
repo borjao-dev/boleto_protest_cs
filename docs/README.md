@@ -61,3 +61,5 @@ Automatiza o processo completo de recebimento e repasse de boletos de condomíni
 - Melhorias e otimizações de código e performance
 - Ampliar o programa, criando mais opções e comodidades para o usuário (pensar em como poderia ser um automatizador desse tipo, mas não especificamente para Dalgiza, e sim para o público/empresas em geral)
 - Fazer versão mobile, web e outras
+- Sequência que os aps aparecem nos emails Protest: 1508, 1503, 1509, 1515
+- Adicionar MENSAGENS tanto de sucesso quanto de erro para o usuário no programa, senão vai ficar perdida!!

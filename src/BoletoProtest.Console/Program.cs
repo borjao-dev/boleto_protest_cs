@@ -7,10 +7,5 @@ public class Program
     {
         string env = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Production";
         AppConfig appConf = ConfigurationService.AppConfiguration();
-
-        Console.WriteLine("Confirmando configuração:");
-        Console.WriteLine($"ENV => {env}");
-        Console.WriteLine($"Prefixo CPF => {appConf.CpfPrefixo}");
-        Console.WriteLine($"Pasta Destino => {appConf.PastaDestino}");
     }
 }
