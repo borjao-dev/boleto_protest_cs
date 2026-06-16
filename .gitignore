@@ -488,3 +488,4 @@ $RECYCLE.BIN/
 **/client_secret*.json
 credentials.json
 token.json
+src/BoletoProtest.Console/appsettings.json

@@ -80,11 +80,13 @@ public class GmailMessageService
         return urlsBoletos;
     }
 
-    public static async Task BaixaPDF(AppConfig appConf)
+    public static async Task<List<Boleto>> BaixaPDF(AppConfig appConf)
     {
         List<string> listaUrls = await FiltraEmailsPorData(appConf);
 
         using HttpClient clienteGet = new();
+
+        List<Boleto> boletos = [];
 
         foreach (string url in listaUrls)
         {
@@ -96,7 +98,11 @@ public class GmailMessageService
             Boleto boleto = new(url, "apartamento_aqui", DateTime.Now.AddMonths(1));
 
             await FileService.SalvaArquivoPDF(bytes, boleto, appConf);
+
+            boletos.Add(boleto);
         }
+
+        return boletos;
     }
 
     private static string AuxMultipart(GmailMessagesParts parts)
