@@ -14,33 +14,26 @@ public class FileService
     public static async Task SalvaArquivoPDF(byte[] conteudoPDF, Boleto boleto, AppConfig appConf)
     {
         string caminhoCompleto = CaminhoCompletoDoArquivo(boleto, appConf);
-        string? diretorio = Path.GetDirectoryName(caminhoCompleto);
-
-        if (diretorio is null)
-        {
-            Console.Write("Caminho de destino inválido nas configurações!");
-            return;
-        }
-
-        if (!Directory.Exists(diretorio))
-        {
-            Console.Write($"O caminho '{diretorio}' não existe!");
-            return;
-        }
 
         try
         {
             await File.WriteAllBytesAsync(caminhoCompleto, conteudoPDF);
         }
+        catch (DirectoryNotFoundException ex)
+        {
+            Helpers.MensagemEx(ex, "Caminho de destino inválido nas configurações!");
+            throw;
+        }
         catch (UnauthorizedAccessException ex)
         {
-            Console.Write($"Erro de autorização para salvar o arquivo! => {ex.Message}");
+            Helpers.MensagemEx(ex, "Erro de autorização para salvar o arquivo!");
+            throw;
         }
     }
 
     public static async Task<byte[]> LerArquivoPDF(Boleto boleto, AppConfig appConf)
     {
-        string? caminhoCompleto = CaminhoCompletoDoArquivo(boleto, appConf);
+        string caminhoCompleto = CaminhoCompletoDoArquivo(boleto, appConf);
 
         try
         {
@@ -48,12 +41,12 @@ public class FileService
         }
         catch (FileNotFoundException ex)
         {
-            Console.Write($"Caminho do arquivo inválido nas configurações! => {ex.Message}");
+            Helpers.MensagemEx(ex, "Caminho do arquivo inválido nas configurações!");
             throw;
         }
         catch (UnauthorizedAccessException ex)
         {
-            Console.Write($"Erro de autorização para salvar o arquivo! => {ex.Message}");
+            Helpers.MensagemEx(ex, "Erro de autorização para salvar o arquivo!");
             throw;
         }
     }
