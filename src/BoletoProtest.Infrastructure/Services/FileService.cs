@@ -37,4 +37,24 @@ public class FileService
             Console.Write($"Erro de autorização para salvar o arquivo! => {ex.Message}");
         }
     }
+
+    public static async Task<byte[]> LerArquivoPDF(Boleto boleto, AppConfig appConf)
+    {
+        string? caminhoCompleto = CaminhoCompletoDoArquivo(boleto, appConf);
+
+        try
+        {
+            return await File.ReadAllBytesAsync(caminhoCompleto);
+        }
+        catch (FileNotFoundException ex)
+        {
+            Console.Write($"Caminho do arquivo inválido nas configurações! => {ex.Message}");
+            throw;
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            Console.Write($"Erro de autorização para salvar o arquivo! => {ex.Message}");
+            throw;
+        }
+    }
 }
