@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Web;
+using BoletoProtest.Infrastructure.Helpers;
 using BoletoProtest.Infrastructure.Models;
 
 namespace BoletoProtest.Infrastructure.Services;
@@ -61,7 +62,8 @@ public class GmailAuthService
             }
             catch (JsonException jex)
             {
-                Console.Write($"Erro: Arquivo JSON corrompido! => {jex.Message}");
+                Helper.MensagemEx(jex, "Erro: Arquivo JSON corrompido!");
+                throw;
                 return null;
             }
         }
@@ -97,7 +99,8 @@ public class GmailAuthService
             }
             catch (JsonException jex)
             {
-                Console.Write($"Erro: Arquivo JSON corrompido! => {jex.Message}");
+                Helper.MensagemEx(jex, "Erro: Arquivo JSON corrompido!");
+                throw;
             }
         }
 
@@ -214,11 +217,11 @@ public class GmailAuthService
         }
         catch (HttpListenerException hlex)
         {
-            Console.Write($"Erro: Porta já em uso ou sem permissão! => {hlex.Message}");
+            Helper.MensagemEx(hlex, "Erro: Porta já em uso ou sem permissão!");
         }
         catch (OperationCanceledException ocex)
         {
-            Console.Write($"Erro: Operação cancelada! => {ocex.Message}");
+            Helper.MensagemEx(ocex, "Erro: Operação cancelada!");
         }
 
         if (code is null)

@@ -19,9 +19,9 @@ public class GmailSearchService
 
     public static async Task<GmailFilteredEmails> BuscaEmailsContendoTermo(AppConfig appConf)
     {
-        string filtragem = $"subject:\"{appConf.AssuntoEmail}\" from:{appConf.EmailRemetente}";
+        string busca = $"subject:\"{appConf.AssuntoEmailBusca}\" from:{appConf.EmailRemetente}";
 
-        string uri = $"{Protocolo}{Dominio}{Caminho}{Consulta}{Uri.EscapeDataString(filtragem)}";
+        string uri = $"{Protocolo}{Dominio}{Caminho}{Consulta}{Uri.EscapeDataString(busca)}";
 
         string tokenDeAcesso = await GmailAuthService.BuscaTokenDeAcessoAsync();
 

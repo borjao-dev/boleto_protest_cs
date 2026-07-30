@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using BoletoProtest.Core.Models;
+using BoletoProtest.Infrastructure.Helpers;
 using BoletoProtest.Infrastructure.Models;
 
 namespace BoletoProtest.Infrastructure.Services;
@@ -80,7 +81,25 @@ public class GmailMessageService
         return urlsBoletos;
     }
 
-    public static async Task<List<Boleto>> BaixaPDF(AppConfig appConf)
+    public static string LeNumeroApto(byte[] bytesPdf)
+    {
+        string conteudo = Encoding.UTF8.GetString(bytesPdf); // UNIDADE: BL A - AP
+
+        string inicio = "UNIDADE: BL ";
+        string final = $"\n";
+
+        string apto = Helper.CapturaStringEntreStrings(conteudo, inicio, final); // A - AP 1509
+
+        apto = apto.Replace(" ", "").Replace("AP", "").Replace("-", ""); // A1509
+
+        apto += "-"; // A1509-
+
+        string aptoConfigurado = apto[1..] + apto[0]; // 1509-A
+
+        return aptoConfigurado;
+    }
+
+    public static async Task<List<Boleto>> BaixaPdf(AppConfig appConf)
     {
         List<string> listaUrls = await FiltraEmailsPorData(appConf);
 
@@ -97,7 +116,7 @@ public class GmailMessageService
 
             Boleto boleto = new(url, "apartamento_aqui", DateTime.Now.AddMonths(1));
 
-            await FileService.SalvaArquivoPDF(bytes, boleto, appConf);
+            await FileService.SalvaArquivoPdf(bytes, boleto, appConf);
 
             boletos.Add(boleto);
         }
