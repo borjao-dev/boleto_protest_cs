@@ -2,6 +2,10 @@
   <ItemGroup>
     <ProjectReference Include="..\BoletoProtest.Core\BoletoProtest.Core.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Google.Apis.Gmail.v1" Version="1.74.0.4162" />
+    <PackageReference Include="PdfPig" Version="0.1.15" />
+  </ItemGroup>
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
