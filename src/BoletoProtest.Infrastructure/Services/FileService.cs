@@ -1,21 +1,22 @@
-using System.Text;
 using BoletoProtest.Core.Models;
-using BoletoProtest.Infrastructure.Helpers;
+using BoletoProtest.Infrastructure.Utils;
 
 namespace BoletoProtest.Infrastructure.Services;
 
-public class FileService
+public class FileService(string pastaDestino)
 {
-    private static string CaminhoCompletoDoArquivo(Boleto boleto, AppConfig appConf)
+    private readonly string _pastaDestino = pastaDestino;
+
+    public string CaminhoCompletoDoArquivo(Boleto boleto)
     {
         string nomeArquivo = $"Vencimento_{boleto.Vencimento:dd-MM-yyyy}.pdf";
 
-        return Path.Combine(appConf.PastaDestino, nomeArquivo);
+        return Path.Combine(_pastaDestino, nomeArquivo);
     }
 
-    public static async Task SalvaArquivoPdf(byte[] conteudoPdf, Boleto boleto, AppConfig appConf)
+    public async Task SalvaArquivoPdf(byte[] conteudoPdf, Boleto boleto)
     {
-        string caminhoCompleto = CaminhoCompletoDoArquivo(boleto, appConf);
+        string caminhoCompleto = CaminhoCompletoDoArquivo(boleto);
 
         try
         {
@@ -23,37 +24,12 @@ public class FileService
         }
         catch (DirectoryNotFoundException ex)
         {
-            Helper.MensagemEx(ex, "Caminho de destino inválido nas configurações!");
+            Util.MensagemEx(ex, "Caminho de destino inválido nas configurações!");
             throw;
         }
         catch (UnauthorizedAccessException ex)
         {
-            Helper.MensagemEx(ex, "Erro de autorização para salvar o arquivo!");
-            throw;
-        }
-    }
-
-    public static async Task<string> ConverteBytesPdfParaString(byte[] bytesPdf)
-    {
-        return Encoding.UTF8.GetString(bytesPdf);
-    }
-
-    public static async Task<byte[]> LerBytesArquivoPdf(Boleto boleto, AppConfig appConf)
-    {
-        string caminhoCompleto = CaminhoCompletoDoArquivo(boleto, appConf);
-
-        try
-        {
-            return await File.ReadAllBytesAsync(caminhoCompleto);
-        }
-        catch (FileNotFoundException ex)
-        {
-            Helper.MensagemEx(ex, "Caminho do arquivo inválido nas configurações!");
-            throw;
-        }
-        catch (UnauthorizedAccessException ex)
-        {
-            Helper.MensagemEx(ex, "Erro de autorização para salvar o arquivo!");
+            Util.MensagemEx(ex, "Erro de autorização para salvar o arquivo!");
             throw;
         }
     }

@@ -1,68 +1,68 @@
-using System.Net.Http.Headers;
 using System.Text;
-using System.Text.Json;
 using System.Text.RegularExpressions;
 using BoletoProtest.Core.Models;
-using BoletoProtest.Infrastructure.Helpers;
-using BoletoProtest.Infrastructure.Models;
+using Google.Apis.Gmail.v1;
+using Google.Apis.Gmail.v1.Data;
 
 namespace BoletoProtest.Infrastructure.Services;
 
-public class GmailMessageService
+public class GmailMessageService(GmailService gmailService)
 {
-    private const string Protocolo = "https://";
+    private readonly GmailService _gmailService = gmailService;
 
-    private const string Dominio = "gmail.googleapis.com";
-
-    private const string Caminho = "/gmail/v1/users/me/messages";
-
-    private static readonly HttpClient _clienteGet = new();
-
-    private static async Task<List<GmailMessages>> BuscaMensagensGmail(AppConfig appConf)
+    private async Task<List<Message>> BuscaMensagensGmail(AppConfig appConf)
     {
-        GmailFilteredEmails ids = await GmailSearchService.BuscaEmailsContendoTermo(appConf);
+        string busca =
+            $"subject:\"{appConf.AssuntoEmailBusca}\" from:{appConf.EmailRemetenteBusca}";
 
-        string tokenDeAcesso = await GmailAuthService.BuscaTokenDeAcessoAsync();
-
-        _clienteGet.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
-            "Bearer",
-            tokenDeAcesso
+        UsersResource.MessagesResource.ListRequest listagem = _gmailService.Users.Messages.List(
+            "me"
         );
+        listagem.Q = busca;
 
-        List<GmailMessages> lista = [];
+        ListMessagesResponse idsEncontrados = await listagem.ExecuteAsync();
 
-        foreach (GmailFilteredEmailsMessages emailRef in ids.Messages)
+        List<Message> mensagens = [];
+
+        if (idsEncontrados.Messages is null)
         {
-            string uri = $"{Protocolo}{Dominio}{Caminho}/{emailRef.Id}";
-
-            HttpResponseMessage resposta = await _clienteGet.GetAsync(uri);
-            resposta.EnsureSuccessStatusCode();
-
-            string resultado = await resposta.Content.ReadAsStringAsync();
-
-            lista.Add(
-                JsonSerializer.Deserialize<GmailMessages>(resultado)
-                    ?? throw new JsonException("Resposta inválida do servidor de mensagens.")
-            );
+            return mensagens;
         }
 
-        return lista;
+        foreach (Message referencia in idsEncontrados.Messages)
+        {
+            Message mensagemCompleta = await _gmailService
+                .Users.Messages.Get("me", referencia.Id)
+                .ExecuteAsync();
+
+            mensagens.Add(mensagemCompleta);
+        }
+
+        return mensagens;
     }
 
-    private static async Task<List<string>> FiltraEmailsPorData(AppConfig appConf)
+    private async Task<List<string>> FiltraEmailsPorData(AppConfig appConf)
     {
         DateTime mesQueVem = DateTime.Now.AddMonths(1);
         string vencimento = mesQueVem.ToString("MM/yyyy");
 
-        List<GmailMessages> mensagensGmail = await BuscaMensagensGmail(appConf);
+        List<Message> mensagensGmail = await BuscaMensagensGmail(appConf);
 
         List<string> urlsBoletos = [];
 
-        foreach (GmailMessages mensagem in mensagensGmail)
+        foreach (Message mensagem in mensagensGmail)
         {
             string corpo = AuxMultipart(mensagem.Payload);
-            string base64Padrao = corpo.Replace('-', '+').Replace('_', '/');
-            byte[] bytes = Convert.FromBase64String(base64Padrao);
+
+            if (string.IsNullOrEmpty(corpo))
+            {
+                continue;
+            }
+
+            // A lib do Google já trabalha nativamente com base64url, então o campo
+            // Data que ela devolve já vem no formato `"-"/"_"`, dispensando o
+            // `Replace('-', '+').Replace('_', '/')` manual.
+            byte[] bytes = FromBase64UrlString(corpo);
             string conteudo = Encoding.UTF8.GetString(bytes);
 
             if (conteudo.Contains(vencimento))
@@ -81,29 +81,12 @@ public class GmailMessageService
         return urlsBoletos;
     }
 
-    public static string LeNumeroApto(byte[] bytesPdf)
-    {
-        string conteudo = Encoding.UTF8.GetString(bytesPdf); // UNIDADE: BL A - AP
-
-        string inicio = "UNIDADE: BL ";
-        string final = $"\n";
-
-        string apto = Helper.CapturaStringEntreStrings(conteudo, inicio, final); // A - AP 1509
-
-        apto = apto.Replace(" ", "").Replace("AP", "").Replace("-", ""); // A1509
-
-        apto += "-"; // A1509-
-
-        string aptoConfigurado = apto[1..] + apto[0]; // 1509-A
-
-        return aptoConfigurado;
-    }
-
-    public static async Task<List<Boleto>> BaixaPdf(AppConfig appConf)
+    public async Task<List<Boleto>> BaixaPdf(AppConfig appConf)
     {
         List<string> listaUrls = await FiltraEmailsPorData(appConf);
 
         using HttpClient clienteGet = new();
+        FileService fileService = new(appConf.PastaDestino);
 
         List<Boleto> boletos = [];
 
@@ -114,9 +97,14 @@ public class GmailMessageService
 
             byte[] bytes = await resposta.Content.ReadAsByteArrayAsync();
 
-            Boleto boleto = new(url, "apartamento_aqui", DateTime.Now.AddMonths(1));
+            string numeroApartamento = PdfService.BuscaNumeroApartamentoFormatado(
+                bytes,
+                appConf.CpfPrefixo
+            );
 
-            await FileService.SalvaArquivoPdf(bytes, boleto, appConf);
+            Boleto boleto = new(url, numeroApartamento, DateTime.Now.AddMonths(1));
+
+            await fileService.SalvaArquivoPdf(bytes, boleto);
 
             boletos.Add(boleto);
         }
@@ -124,24 +112,46 @@ public class GmailMessageService
         return boletos;
     }
 
-    private static string AuxMultipart(GmailMessagesParts parts)
+    // MessagePart, na lib, ja e a estrutura tipada equivalente ao antigo GmailMessagesParts.
+    private static string AuxMultipart(MessagePart parte)
     {
-        if (string.IsNullOrEmpty(parts.Body.Data))
+        if (!string.IsNullOrEmpty(parte.Body?.Data))
         {
-            foreach (GmailMessagesParts parte in parts.Parts)
+            if (parte.MimeType == "text/html")
             {
-                if (parte.MimeType == "text/html")
-                {
-                    return parte.Body.Data;
-                }
+                return parte.Body.Data;
+            }
+        }
 
-                string resultado = AuxMultipart(parte);
+        if (parte.Parts is not null)
+        {
+            foreach (MessagePart subParte in parte.Parts)
+            {
+                string resultado = AuxMultipart(subParte);
                 if (resultado != "")
                 {
                     return resultado;
                 }
             }
         }
+
         return "";
+    }
+
+    private static byte[] FromBase64UrlString(string base64Url)
+    {
+        string base64Padrao = base64Url.Replace('-', '+').Replace('_', '/');
+
+        switch (base64Padrao.Length % 4)
+        {
+            case 2:
+                base64Padrao += "==";
+                break;
+            case 3:
+                base64Padrao += "=";
+                break;
+        }
+
+        return Convert.FromBase64String(base64Padrao);
     }
 }
