@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <!-- Projetos de teste no xUnit v3 são executáveis -->
+    <OutputType>Exe</OutputType>
+    <!-- Integração nativa com o Microsoft.Testing.Platform do .NET 10 -->
+    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit.v3" Version="3.*" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.*" />
+  </ItemGroup>
+
+  <!-- Referência para a biblioteca principal que você deseja testar -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\BoletoProtest.Infrastructure\BoletoProtest.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
