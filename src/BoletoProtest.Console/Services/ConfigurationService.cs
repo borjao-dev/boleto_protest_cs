@@ -18,7 +18,7 @@ public class ConfigurationService
             .AddJsonFile(jsonFile, optional: true)
             .Build();
 
-        AppConfig appConfig = new AppConfig();
+        AppConfig appConfig = new();
         conf.GetSection("App").Bind(appConfig);
 
         return appConfig;
