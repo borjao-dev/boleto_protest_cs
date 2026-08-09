@@ -19,7 +19,7 @@ public static class GmailAuthService
 
     private static readonly string CaminhoCredenciais = Path.Combine(
         PastaConfiguracao,
-        "credentials.json"
+        "client_secret.json"
     );
 
     // Pasta onde a lib guarda o token já autorizado (equivalente ao seu antigo token.json,
