@@ -1,0 +1,32 @@
+name: Local Qwen Setup
+version: 1.0.0
+schema: v1
+
+models:
+  - name: Qwen2.5-Coder 7B (chat)
+    provider: ollama
+    model: qwen2.5-coder:7b
+    apiBase: http://127.0.0.1:11434
+    roles:
+      - chat
+      - edit
+      - apply
+
+  - name: Qwen2.5-Coder 1.5B (autocomplete)
+    provider: ollama
+    model: qwen2.5-coder:1.5b
+    apiBase: http://127.0.0.1:11434
+    roles:
+      - autocomplete
+
+context:
+  - provider: file
+  - provider: directory
+  - provider: git
+  - provider: terminal
+  - provider: codebase
+
+tabAutocompleteOptions:
+  debounceDelay: 300
+  maxPromptTokens: 1024
+  multilineCompletions: always

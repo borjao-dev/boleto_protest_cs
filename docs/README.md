@@ -1,162 +1,65 @@
 # Automação Boletos PROTEST — Laranjeiras
 
-## Dalgiza Borges | Ap 1509-A | Parque Residencial Laranjeiras, 336
+## O que faz
+
+Automatiza o processo completo de recebimento e repasse de boletos de condomínio:
+
+1. Acessa o Gmail e localiza o email do PROTEST com o boleto
+2. Extrai o link do boleto e a data de vencimento
+3. Abre o boleto, autentica com os 4 primeiros dígitos do CPF e baixa o PDF
+4. Salva o PDF localmente com o nome `Vencimento_DD-MM-YYYY.pdf`
+5. Envia para impressão
+6. Prepara um rascunho de email no Gmail com o PDF anexado, usando um template pré-configurado, para a Dalgiza revisar e enviar manualmente
 
 ---
 
-## O que o programa faz
+## Configurações necessárias
 
-1. Abre o Gmail (Chrome já logado, sem pedir senha)
-2. Busca o email do PROTEST com assunto "Aviso De Boleto Gerado"
-3. Extrai o link do boleto e a data de vencimento do email
-4. Abre o link → digita os 4 primeiros dígitos do CPF (4776) → PDF aparece
-5. Salva o PDF em `D:\DALGIZA\Condominios\1509-A\Vencimento_DD-MM-YYYY.pdf`
-6. Envia para impressão
-7. Volta ao Gmail, usa o template "Boleto PROTEST ap 1509-A 336 Laranjeiras", anexa o PDF e deixa o **rascunho aberto** para a Dalgiza revisar e clicar Enviar
-
----
-
-## Arquivos do projeto
-
-``` bash
-boleto_protest/
-  boleto_automation.py   ← código principal
-  config.json            ← configurações (checar antes de usar)
-  requirements.txt       ← dependências Python
-  setup_e_build.bat      ← instala tudo e gera o .exe (rodar no Windows)
-  README.md              ← este arquivo
-```
+| Campo | Valor |
+| --- | --- |
+| CPF (4 primeiros dígitos) | `4776` |
+| Pasta de destino do PDF | `D:\DALGIZA\Condominios\1509-A` |
+| Template de email no Gmail | `Boleto PROTEST ap 1509-A 336 Laranjeiras` |
+| Email do destinatário | <danieloliveiracorretor222@gmail.com> |
+| Apartamentos gerenciados | `1509-A`, `1508-A`, `1503-A`, `1515-B` |
 
 ---
 
-## Configurações a verificar no config.json
+## Pré-requisitos
 
-| Campo | Valor atual | O que é |
-| --- | --- | --- |
-| `cpf_4_digitos` | `4776` | Primeiros 4 dígitos do CPF da Dalgiza |
-| `pasta_download` | `D:\DALGIZA\Condominios\1509-A` | Onde salvar o boleto |
-| `gmail_template` | `Boleto PROTEST ap 1509-A 336 Laranjeiras` | Nome **exato** do template no Gmail |
-| `gmail_destinatario` | *(preencher com email do Daniel)* | Email da imobiliária Henrique |
-| `caminho_perfil_chrome` | `C:\Users\DALGIZA\AppData\...` | Verificar se o nome do usuário Windows bate |
-
-### Perfis por sistema operacional (Windows/Fedora)
-
-Agora o `config.json` suporta múltiplos perfis em `perfis`:
-
-- `dalgiza_windows`: perfil real para uso no Windows 10 dela
-- `meu_fedora`: perfil de testes no Fedora
-
-Seleção de perfil:
-
-1. `perfil_ativo: "auto"` usa `perfil_por_plataforma` (`win32`/`linux`)
-2. `BOLETO_PERFIL` força um perfil específico
-
-Exemplos:
-
-```bash
-# Fedora: força perfil de testes
-BOLETO_PERFIL=meu_fedora python boleto_automation.py
-```
-
-```bat
-:: Windows: força perfil real
-set BOLETO_PERFIL=dalgiza_windows && python boleto_automation.py
-```
-
-No log de execução, o programa mostra qual perfil foi ativado.
-
-### Campo novo no navegador: `canal`
-
-- `"canal": "chrome"` -> usa Chrome instalado no sistema (ideal no Windows dela)
-- `"canal": null` -> usa Chromium do Playwright (útil para testes no Fedora)
-
-### Formato recomendado para `apartamentos` (menos repetição)
-
-Use um objeto com `identificadores` e placeholders `{identificador}`:
-
-```json
-"apartamentos": {
-   "identificadores": ["1509-A", "1508-A", "1503-A", "1515-B"],
-   "pasta_download": "D:\\DALGIZA\\Condominios\\{identificador}",
-   "nome_arquivo": "Vencimento_{data_vencimento}.pdf",
-   "gmail_template": "Boleto PROTEST ap {identificador} 336 Laranjeiras",
-   "gmail_destinatario": "danieloliveiracorretor222@gmail.com",
-   "gmail_cc": ""
-}
-```
-
-O programa substitui `{identificador}` automaticamente para cada apartamento.
-Ele também continua aceitando o formato antigo (lista de objetos), para compatibilidade.
-
-**Para descobrir o nome certo do usuário Windows:**
-Abre o Explorador de Arquivos → barra de endereço → digita `%LOCALAPPDATA%\Google\Chrome\User Data` → se abrir, o caminho está certo.
-
----
-
-## Instalação — fazer só uma vez no computador dela
-
-### Pré-requisitos
-
-- Windows 10
-- Chrome instalado
-- Conexão com internet
-
-### Passos
-
-1. Baixe e instale o Python: <https://www.python.org/downloads/>
-   - ⚠️ **Marque "Add Python to PATH"** durante a instalação — obrigatório
-
-2. Copie a pasta `boleto_protest` para o computador (ex: `C:\boleto_protest\`)
-
-3. Clique com botão direito em `setup_e_build.bat` → **Executar como administrador**
-
-4. Aguarda — instala Python, Playwright, Chrome headless e gera o `.exe`
-
-5. O executável final fica em `dist\Boletos Laranjeiras.exe`
-   - Copie para a Área de Trabalho para facilitar o acesso
-
----
-
-## Ativar Templates no Gmail (fazer só uma vez)
-
-1. Abre o Gmail → ⚙️ → **Ver todas as configurações**
-2. Aba **Avançado**
-3. Em **Modelos** → **Ativar**
-4. Salva as alterações
+- Windows 10 com Chrome instalado
+- Gmail com a funcionalidade de **Templates (Modelos)** ativada
+- Chrome fechado antes de rodar o programa
 
 ---
 
 ## Uso no dia a dia
 
-1. Recebeu email do PROTEST? Clica duas vezes em **"Boletos Laranjeiras.exe"**
-2. O Chrome abre automaticamente e faz tudo
-3. No final, aparece o rascunho do email no Gmail
-4. Revisa e clica **Enviar**
-
-> ⚠️ **Feche o Chrome antes de rodar o programa**
-> O Playwright precisa abrir o Chrome com o perfil dela — se o Chrome já estiver aberto, pode dar conflito.
+1. Recebeu o email do PROTEST → abrir o programa
+2. O Chrome executa tudo automaticamente
+3. Ao final, revisar o rascunho no Gmail e clicar **Enviar**
 
 ---
 
-## Se algo der errado
+## Problemas comuns
 
-| Problema | O que fazer |
+| Sintoma | Solução |
 | --- | --- |
-| "cpf_4_digitos" não funciona | Verifica se são realmente os 4 primeiros dígitos do CPF da Dalgiza |
-| Template não encontrado | Nome no config.json deve ser **idêntico** ao nome salvo no Gmail (maiúsculas, espaços, tudo) |
-| PDF não baixa automaticamente | O programa pede para salvar manualmente e continua |
-| Chrome não abre com perfil certo | Verificar o caminho em `caminho_perfil_chrome` no config.json |
-| Timeout na busca do email | O site pode estar lento — abra o Chrome manualmente e veja o que aparece |
+| CPF não reconhecido | Confirmar se são os 4 primeiros dígitos corretos |
+| Template não encontrado | O nome no sistema deve ser idêntico ao salvo no Gmail |
+| PDF não baixa | O programa permite salvar manualmente e continua |
+| Chrome não abre corretamente | Verificar o caminho do perfil do Chrome nas configurações |
+| Timeout ao buscar email | Abrir o Chrome manualmente para verificar o site |
 
 ---
 
-## Desenvolvimento (no Fedora)
+## Possíveis melhorias futuras
 
-```bash
-pip install -r requirements.txt
-python -m playwright install chromium
-python boleto_automation.py
-```
-
-> O PyInstaller precisa rodar **no Windows** para gerar o .exe.
-> Desenvolva/teste no Fedora, gere o executável final no Windows dela.
+- Criação de GUI para permitir seleção de opções para o usuário
+- Fazer com que TODOS os dados sejam opções definíveis pelo usuário (tanto de modo "permanente" - salvo em configs/modelos individuais - quanto imediata, na própria GUI)
+- Em caso de falha devido a fatores externos (por exemplo, PROTEST mudou o formato que apresenta datas de 'dd/MM/yyyy' para 'yyyy-MM-dd'), exibir alerta para o usuário informando sobre o problema específico, e pedindo para entrar em contato com o desenvolvedor (<borjao.dev@gmail.com>)
+- Melhorias e otimizações de código e performance
+- Ampliar o programa, criando mais opções e comodidades para o usuário (pensar em como poderia ser um automatizador desse tipo, mas não especificamente para Dalgiza, e sim para o público/empresas em geral)
+- Fazer versão mobile, web e outras
+- Sequência que os aps aparecem nos emails Protest: 1508, 1503, 1509, 1515
+- Adicionar MENSAGENS tanto de sucesso quanto de erro para o usuário no programa, senão vai ficar perdida!!

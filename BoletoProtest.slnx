@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/BoletoProtest.Console/BoletoProtest.Console.csproj" />
+    <Project Path="src/BoletoProtest.Core/BoletoProtest.Core.csproj" />
+    <Project Path="src/BoletoProtest.Infrastructure/BoletoProtest.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/BoletoProtest.Core.Tests/BoletoProtest.Core.Tests.csproj" />
+  </Folder>
+</Solution>
