@@ -8,6 +8,13 @@
     <PackageReference Include="PdfPig" Version="0.1.15" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- Permite que o projeto de testes acesse membros internal desta biblioteca
+         (ex: BoletoParserService.ExtraiVencimento, GmailDraftService.SubstituiPalavraChave),
+         sem precisar torná-los public para o resto do mundo. -->
+    <InternalsVisibleTo Include="BoletoProtest.Infrastructure.Tests" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
