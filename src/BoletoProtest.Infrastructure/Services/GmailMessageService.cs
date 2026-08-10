@@ -1,5 +1,4 @@
 using System.Text;
-using System.Text.RegularExpressions;
 using BoletoProtest.Core.Models;
 using Google.Apis.Gmail.v1;
 using Google.Apis.Gmail.v1.Data;
@@ -56,50 +55,9 @@ public class GmailMessageService(GmailService gmailService)
             byte[] bytes = FromBase64UrlString(corpo);
             string conteudo = Encoding.UTF8.GetString(bytes);
 
-            Match matchData = Regex.Match(conteudo, @"vencimento:\s*(\d{2}/\d{2}/\d{4})");
-
-            if (!matchData.Success)
-                continue;
-
-            DateTime vencimento = DateTime.ParseExact(
-                matchData.Groups[1].Value,
-                "dd/MM/yyyy",
-                System.Globalization.CultureInfo.InvariantCulture
+            boletosEncontrados.AddRange(
+                BoletoParserService.ExtraiBoletosDoConteudo(conteudo, appConf.UrlBoleto)
             );
-
-            // Um mesmo email pode conter vários boletos empilhados (a PROTEST manda
-            // um aviso por apartamento, mas a Dalgiza às vezes encaminha vários juntos
-            // numa "Forwarded Conversation"). Regex.Matches (plural) captura TODAS as
-            // URLs do corpo, não só a primeira — cada uma vira um BoletoEncontrado,
-            // todos compartilhando a mesma data de vencimento (idêntica no mesmo email).
-            //
-            // Descoberta via inspeção do conteúdo real decodificado: o HTML usa "&amp;"
-            // como separador de parâmetros (entidade HTML de "&"), não "&" puro — usar
-            // "&" no Regex cortava a URL no meio, gerando um link truncado/inválido que
-            // o servidor da PROTEST devolvia como página de erro, não PDF. Além disso,
-            // cada URL aparece 2x na mesma linha (dentro do href="" e como texto visível
-            // do link) — Distinct() remove as duplicatas antes de baixar.
-            //
-            // Segunda descoberta: appConf.UrlBoleto sozinho ("/Operacional") também bate
-            // com o link de descadastro do rodapé de cada bloco ("/Operacional/
-            // RemoverEmail.aspx"), que devolve uma página HTML, não um PDF — daí o erro
-            // "Could not find the version header comment". Exigir "/PopUp/pCli_BoletoNovo"
-            // como parte obrigatória do padrão resolve, pois só a URL de boleto de
-            // verdade tem esse caminho específico.
-            MatchCollection matchesUrl = Regex.Matches(
-                conteudo,
-                Regex.Escape(appConf.UrlBoleto) + @"/PopUp/pCli_BoletoNovo\.aspx[^\s""<>]*"
-            );
-
-            List<string> urlsUnicas = matchesUrl
-                .Select(match => match.Value.Replace("&amp;", "&"))
-                .Distinct()
-                .ToList();
-
-            foreach (string url in urlsUnicas)
-            {
-                boletosEncontrados.Add(new BoletoEncontrado(url, vencimento));
-            }
         }
 
         return boletosEncontrados;
@@ -127,7 +85,7 @@ public class GmailMessageService(GmailService gmailService)
 
             // Só agora, com o apartamento já extraído do PDF, dá pra saber a pasta
             // final certa (cada apartamento tem sua própria pasta no PC da Dalgiza).
-            string pastaDoApartamento = appConf.PastaDestino.Replace("[[apto]]", numeroApartamento);
+            string pastaDoApartamento = appConf.PastaDestino.Replace("{{apto}}", numeroApartamento);
             FileService fileService = new(pastaDoApartamento);
 
             Boleto boleto = new(encontrado.Link, numeroApartamento, encontrado.Vencimento);

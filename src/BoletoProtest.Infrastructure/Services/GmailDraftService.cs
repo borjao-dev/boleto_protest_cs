@@ -39,10 +39,10 @@ public class GmailDraftService
         _apartamentos = [.. _boletos.Select(boleto => boleto.Apartamento)];
     }
 
-    private string SubstituiPalavraChave(
+    internal string SubstituiPalavraChave(
         string template,
         string? substituto = null,
-        string chave = "[[apto]]"
+        string chave = "{{apto}}"
     )
     {
         if (string.IsNullOrEmpty(substituto))
@@ -66,22 +66,26 @@ public class GmailDraftService
         // real, extraída do corpo do email pela GmailMessageService, sem aproximação.
         string vencimentoFormatado = _boletos[0].Vencimento.ToString("dd/MM/yyyy");
 
-        string corpoComVencimento = SubstituiPalavraChave(
+        string corpoRascunho = SubstituiPalavraChave(
             appConf.Corpo,
             vencimentoFormatado,
-            "[[dtVenc]]"
+            "{{dtVenc}}"
         );
-        string corpoFinal = SubstituiPalavraChave(corpoComVencimento);
 
-        var builder = new BodyBuilder { TextBody = corpoFinal };
+        string plural = _boletos.Count > 1 ? "s" : "";
+        corpoRascunho = SubstituiPalavraChave(corpoRascunho, plural, "{{plural}}");
+
+        corpoRascunho = SubstituiPalavraChave(corpoRascunho);
+
+        var builder = new BodyBuilder { TextBody = corpoRascunho };
 
         foreach (Boleto boleto in _boletos)
         {
-            // Cada apartamento tem sua própria pasta no PC da Dalgiza — [[apto]] só
+            // Cada apartamento tem sua própria pasta no PC da Dalgiza — {{apto}} só
             // pode ser substituído aqui dentro do loop, já com o Boleto completo
             // (mesmo raciocínio já aplicado em GmailMessageService.BaixaPdf).
-            string pastaDoApartamento = appConf.PastaDestino.Replace(
-                "[[apto]]",
+            string pastaDoApartamento = SubstituiPalavraChave(
+                appConf.PastaDestino,
                 boleto.Apartamento
             );
             FileService fs = new(pastaDoApartamento);
