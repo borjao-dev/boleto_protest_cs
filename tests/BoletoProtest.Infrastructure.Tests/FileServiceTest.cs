@@ -32,10 +32,7 @@ public class FileServiceTest : IDisposable
 
         string caminho = fileService.CaminhoCompletoDoArquivo(boleto);
 
-        Assert.Equal(
-            Path.Combine(_pastaTemporaria, "Vencimento_05-08-2026.pdf"),
-            caminho
-        );
+        Assert.Equal(Path.Combine(_pastaTemporaria, "Vencimento_05-08-2026.pdf"), caminho);
     }
 
     [Fact]
@@ -48,7 +45,10 @@ public class FileServiceTest : IDisposable
         await fileService.SalvaArquivoPdf(bytesOriginais, boleto);
 
         string caminho = fileService.CaminhoCompletoDoArquivo(boleto);
-        byte[] bytesLidos = await File.ReadAllBytesAsync(caminho);
+        byte[] bytesLidos = await File.ReadAllBytesAsync(
+            caminho,
+            TestContext.Current.CancellationToken
+        );
 
         Assert.Equal(bytesOriginais, bytesLidos);
     }
@@ -63,7 +63,10 @@ public class FileServiceTest : IDisposable
         await fileService.SalvaArquivoPdf([9, 9, 9, 9], boleto);
 
         string caminho = fileService.CaminhoCompletoDoArquivo(boleto);
-        byte[] bytesLidos = await File.ReadAllBytesAsync(caminho);
+        byte[] bytesLidos = await File.ReadAllBytesAsync(
+            caminho,
+            TestContext.Current.CancellationToken
+        );
 
         Assert.Equal(new byte[] { 9, 9, 9, 9 }, bytesLidos);
     }
@@ -75,8 +78,8 @@ public class FileServiceTest : IDisposable
         FileService fileService = new(pastaInexistente);
         Boleto boleto = new("https://link.qualquer", "1509-A", new DateTime(2026, 8, 5));
 
-        await Assert.ThrowsAsync<DirectoryNotFoundException>(
-            () => fileService.SalvaArquivoPdf([1, 2, 3], boleto)
+        await Assert.ThrowsAsync<DirectoryNotFoundException>(() =>
+            fileService.SalvaArquivoPdf([1, 2, 3], boleto)
         );
     }
 }

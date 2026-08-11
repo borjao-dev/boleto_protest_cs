@@ -21,7 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="TestData\**" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="TestData\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

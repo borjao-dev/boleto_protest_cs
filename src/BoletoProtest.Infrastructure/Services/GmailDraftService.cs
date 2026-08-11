@@ -45,7 +45,10 @@ public class GmailDraftService
         string chave = "{{apto}}"
     )
     {
-        if (string.IsNullOrEmpty(substituto))
+        // is null (não IsNullOrEmpty!) — string vazia ("") é um valor de substituição
+        // VÁLIDO e intencional (ex: {{plural}} no singular vira ""), diferente de
+        // "nenhum valor foi passado" (null, aí sim usa o padrão: lista de apartamentos).
+        if (substituto is null)
         {
             substituto = string.Join(", ", _apartamentos);
         }
