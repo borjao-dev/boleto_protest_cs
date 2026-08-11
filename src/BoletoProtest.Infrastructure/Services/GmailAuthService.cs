@@ -28,6 +28,8 @@ public static class GmailAuthService
 
     public static async Task<GmailService> BuscaGmailService()
     {
+        Console.WriteLine("Autorizando API do Gmail...");
+
         using FileStream stream = new(CaminhoCredenciais, FileMode.Open, FileAccess.Read);
 
         // GoogleClientSecrets.FromStreamAsync lê o mesmo formato de credentials.json

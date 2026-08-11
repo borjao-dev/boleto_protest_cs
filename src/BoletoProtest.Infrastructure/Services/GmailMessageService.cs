@@ -11,11 +11,22 @@ public class GmailMessageService(GmailService gmailService)
 
     private async Task<List<Message>> BuscaMensagensGmail(AppConfig appConf)
     {
-        string busca = $"subject:\"{appConf.AssuntoBusca}\" from:{appConf.Remetente}";
+        Console.WriteLine("Buscando mensagens no Gmail...");
+
+        // Formato EUA
+        DateTime hoje = DateTime.Today; // 8/11/2026 12:00:00 AM
+        DateTime inicioMesAtual = new(hoje.Year, hoje.Month, 1); // 8/1/2026 12:00:00 AM
+        DateTime inicioMesAnterior = inicioMesAtual.AddMonths(-1); // 7/1/2026 12:00:00 AM
+
+        string busca =
+            $"subject:\"{appConf.AssuntoBusca}\" from:\"{appConf.Remetente}\" after:{inicioMesAnterior:yyyy/MM/dd} before:{inicioMesAtual:yyyy/MM/dd}";
+
+        Console.WriteLine($"string busca: {busca}");
 
         UsersResource.MessagesResource.ListRequest listagem = _gmailService.Users.Messages.List(
             "me"
         );
+
         listagem.Q = busca;
 
         ListMessagesResponse idsEncontrados = await listagem.ExecuteAsync();
@@ -35,12 +46,15 @@ public class GmailMessageService(GmailService gmailService)
 
             mensagens.Add(mensagemCompleta);
         }
+        Console.WriteLine($"{mensagens.Count} mensagens encontradas.");
 
         return mensagens;
     }
 
-    private async Task<List<BoletoEncontrado>> FiltraEmailsPorData(AppConfig appConf)
+    private async Task<List<BoletoEncontrado>> FiltraBoletosEncontrados(AppConfig appConf)
     {
+        Console.WriteLine("Filtrando boletos encontrados...");
+
         List<Message> mensagensGmail = await BuscaMensagensGmail(appConf);
 
         List<BoletoEncontrado> boletosEncontrados = [];
@@ -65,7 +79,9 @@ public class GmailMessageService(GmailService gmailService)
 
     public async Task<List<Boleto>> BaixaPdf(AppConfig appConf)
     {
-        List<BoletoEncontrado> boletosEncontrados = await FiltraEmailsPorData(appConf);
+        Console.WriteLine("Baixando arquivos PDF...");
+
+        List<BoletoEncontrado> boletosEncontrados = await FiltraBoletosEncontrados(appConf);
 
         using HttpClient clienteGet = new();
 
@@ -78,7 +94,7 @@ public class GmailMessageService(GmailService gmailService)
 
             byte[] bytes = await resposta.Content.ReadAsByteArrayAsync();
 
-            string numeroApartamento = PdfService.BuscaNumeroApartamentoFormatado(
+            string numeroApartamento = PdfService.FormataNumeroApartamento(
                 bytes,
                 appConf.CpfPrefixo
             );
