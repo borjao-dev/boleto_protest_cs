@@ -1,0 +1,637 @@
+<div dir="ltr"><br><div class="gmail_quote gmail_quote_container"><div dir="ltr"><span style="font-size:large;font-weight:bold">Forwarded Conversation</span><br><span style="font-weight:bold">Subject: Aviso De Boleto Gerado</span><br>------------------------<br></div><br><div dir="ltr" class="gmail_attr" style="color:rgb(136,136,136)">De: <b class="gmail_sendername" dir="auto">PROTEST - AG.COPACABANA.</b> <span dir="auto">&lt;<a href="mailto:naoresponda@protest.com.br">naoresponda@protest.com.br</a>&gt;</span><br>Date: ter., 21 de jul. de 2026 às 05:12<br>To:  &lt;<a href="mailto:dalgizaborges@gmail.com">dalgizaborges@gmail.com</a>&gt;<br></div><br><br>
+
+<u></u>
+
+
+
+
+    
+
+<div style="margin:0px;padding:0px;background-color:rgb(51,51,51)">
+    <form method="post" action="http://./BoletoCobranca.aspx?administradora=6&amp;empreendimento=355" id="m_2293776597436793873form1" target="_blank">
+<input type="hidden" name="__VIEWSTATE" id="m_2293776597436793873__VIEWSTATE" value="0YhWQcZ3GLMa3NF6tVDTL/XEaP9whn9tCf/y6T0nWwm96JNX7Y5z4EcadV6d20yOAq0lM75QuYPeUVKsUEAaQjsnUEE+OJNuNw0YKcPY5S4=">
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="m_2293776597436793873__VIEWSTATEGENERATOR" value="E4C54D2F">
+        <table border="0" cellpadding="0" cellspacing="0" align="center" class="m_2293776597436793873full" style="background-color:rgb(51,51,51);max-width:700px">
+            <tbody><tr>
+                <td style="padding:0px 0px 0px 0px" width="100%">
+                    
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse" class="m_2293776597436793873full">
+                        <tbody><tr>
+                            <td style="padding:0px" bgcolor="#ffffff" width="100%" class="m_2293776597436793873full">
+                                
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody><tr>
+                                        <td style="padding:40px 0px 40px 0px;text-align:center">
+                                            <img id="m_2293776597436793873imEmpreendimento" alt="logo" src="https://prosiga.protest.com.br/Resource/Upload/Administradora/Logotipo/202407171935578395564-Email-250x150.png" style="max-height:150px!important;max-width:250px!important;margin:40px 0px">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:0px 0px 0px 0px" width="600">
+                                            <img id="m_2293776597436793873imEmpreendimentoBanner" alt="banner" src="https://prosiga.protest.com.br/Resource/Upload/Administradora/Banner/202407171940514502765-Email-700x200.png" width="100%" style="max-width:700px;max-height:200px">
+                                        </td>
+                                    </tr>
+                                </tbody></table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0px" bgcolor="#ffffff" width="100%" class="m_2293776597436793873full">
+                                
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody><tr>
+                                        <td style="font-family:&#39;Open Sans&#39;,sans-serif;padding:50px 0px 20px 40px;font-size:20px;font-weight:600;text-transform:uppercase" class="m_2293776597436793873corPrincipal">OLÁ, DALGISA BORGES
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family:&#39;Open Sans&#39;,sans-serif;font-weight:600;padding:20px 0px 20px 40px;font-size:20px;vertical-align:top;text-align:left" class="m_2293776597436793873corPrincipal">
+                                            
+    Aviso de boleto gerado
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:0 0 0 0">
+                                            
+     <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF" style="margin-bottom:20px">
+        <tbody><tr> 
+           <td style="font-size:14px;text-transform:none;text-align:left;padding:20px 40px 40px 40px;font-family:Arial;font-weight:100">Prezado(a) DALGISA<br><br><br>Segue link do boleto do(a) PARQUE RESIDENCIAL LARANJEIRAS, vencimento: 05/08/2026<br><br>Caso o link abaixo não funcione, copie e cole o link na barra de endereço do seu navegador:<br><br><div><a style="word-break:break-all" href="https://prosiga.protest.com.br/Operacional/PopUp/pCli_BoletoNovo.aspx?i=19n0WhWcxcKS6jb0MHLxpw==&amp;cont=/d3Ttbo0+qojND590MUTDQ==&amp;log=8GE7Urmp9eE=&amp;baixa=1" target="_blank">https://prosiga.protest.com.br/Operacional/PopUp/pCli_BoletoNovo.aspx?i=19n0WhWcxcKS6jb0MHLxpw==&amp;cont=/d3Ttbo0+qojND590MUTDQ==&amp;log=8GE7Urmp9eE=&amp;baixa=1</a></div><br><br>&quot;&quot;PARA ABERTURA DO SEU BOLETO É NECESSÁRIO INFORMAR OS 4 PRIMEIROS NÚMEROS DO SEU CPF OU CNPJ&quot;&quot;<br><br><br>Acesse o site <a href="https://prosiga.protest.com.br" target="_blank">https://prosiga.protest.com.br</a> para obter uma segunda via do boleto online e também para consultar outras informações do condomínio.<br><br><br>PROTEST<br>Imóveis e Condomínios</td>
+        </tr>
+    </tbody></table>
+
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="display:block;width:100%">
+        <tbody>
+            <tr>
+                <td width="30%" valign="middle" class="m_2293776597436793873bgCorSecundaria" style="width:30%">
+                    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td align="left" valign="top" class="m_2293776597436793873bgCorSecundaria" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:20px;line-height:34px;color:rgb(255,255,255);font-weight:bold;text-transform:uppercase;padding:20px 20px 0px">886791
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top" class="m_2293776597436793873bgCorSecundaria" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:10px;color:rgb(255,255,255);font-weight:normal;text-transform:uppercase;padding:0px 20px 20px">número
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td width="35%" class="m_2293776597436793873bgCorPrincipal" style="width:35%">
+                    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td align="left" valign="top" class="m_2293776597436793873bgCorPrincipal" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:20px;line-height:34px;color:rgb(255,255,255);font-weight:bold;text-transform:uppercase;padding:20px 20px 0px">05/08/2026
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top" class="m_2293776597436793873bgCorPrincipal" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:10px;color:rgb(255,255,255);font-weight:normal;text-transform:uppercase;padding:0px 20px 20px">vencimento
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td width="35%" class="m_2293776597436793873bgCorSecundaria" style="width:35%">
+                    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td align="left" valign="top" class="m_2293776597436793873bgCorSecundaria" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:20px;line-height:34px;color:rgb(255,255,255);font-weight:bold;text-transform:uppercase;padding:20px 20px 0px">R$ 887,66
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top" class="m_2293776597436793873bgCorSecundaria" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:10px;color:rgb(255,255,255);font-weight:normal;text-transform:uppercase;padding:0px 20px 20px">valor
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+                                        </td>
+                                    </tr>
+                                </tbody></table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0px 0px 0px 0px" class="m_2293776597436793873full">
+                                
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td style="text-align:center;vertical-align:top">
+                                                
+
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody><tr>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:12px;font-weight:400;color:rgb(204,204,204);text-align:left;padding:5px 30px;width:100%;vertical-align:bottom">
+                                            ©2026
+                                            <span id="m_2293776597436793873nmAdministradora">PROTEST - AG.COPACABANA.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:12px;font-weight:400;color:rgb(204,204,204);padding:30px;text-align:center;vertical-align:bottom;width:100%" colspan="3"><a href="https://prosiga.protest.com.br/Operacional/RemoverEmail.aspx?r=apXbbdDvHTW3ezligI16jV0aj91302vaS9raTiUNY+8=" style="color:rgb(204,204,204)" target="_blank">Clique aqui caso não queira receber neste e-mail este tipo de mensagem</a>
+                                        </td>
+                                    </tr>
+
+                                </tbody></table>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </td>
+            </tr>
+        </tbody></table>
+        
+        
+    </form>
+</div>
+
+<br><br><div dir="ltr" class="gmail_attr" style="color:rgb(136,136,136)">----------<br>De: <b class="gmail_sendername" dir="auto">PROTEST - AG.COPACABANA.</b> <span dir="auto">&lt;<a href="mailto:naoresponda@protest.com.br">naoresponda@protest.com.br</a>&gt;</span><br>Date: ter., 21 de jul. de 2026 às 05:13<br>To:  &lt;<a href="mailto:dalgizaborges@gmail.com">dalgizaborges@gmail.com</a>&gt;<br></div><br><br>
+
+<u></u>
+
+
+
+
+    
+
+<div style="margin:0px;padding:0px;background-color:rgb(51,51,51)">
+    <form method="post" action="http://./BoletoCobranca.aspx?administradora=6&amp;empreendimento=355" id="m_-392315316807726405form1" target="_blank">
+<input type="hidden" name="__VIEWSTATE" id="m_-392315316807726405__VIEWSTATE" value="0YhWQcZ3GLMa3NF6tVDTL/XEaP9whn9tCf/y6T0nWwm96JNX7Y5z4EcadV6d20yOAq0lM75QuYPeUVKsUEAaQjsnUEE+OJNuNw0YKcPY5S4=">
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="m_-392315316807726405__VIEWSTATEGENERATOR" value="E4C54D2F">
+        <table border="0" cellpadding="0" cellspacing="0" align="center" class="m_-392315316807726405full" style="background-color:rgb(51,51,51);max-width:700px">
+            <tbody><tr>
+                <td style="padding:0px 0px 0px 0px" width="100%">
+                    
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse" class="m_-392315316807726405full">
+                        <tbody><tr>
+                            <td style="padding:0px" bgcolor="#ffffff" width="100%" class="m_-392315316807726405full">
+                                
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody><tr>
+                                        <td style="padding:40px 0px 40px 0px;text-align:center">
+                                            <img id="m_-392315316807726405imEmpreendimento" alt="logo" src="https://prosiga.protest.com.br/Resource/Upload/Administradora/Logotipo/202407171935578395564-Email-250x150.png" style="max-height:150px!important;max-width:250px!important;margin:40px 0px">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:0px 0px 0px 0px" width="600">
+                                            <img id="m_-392315316807726405imEmpreendimentoBanner" alt="banner" src="https://prosiga.protest.com.br/Resource/Upload/Administradora/Banner/202407171940514502765-Email-700x200.png" width="100%" style="max-width:700px;max-height:200px">
+                                        </td>
+                                    </tr>
+                                </tbody></table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0px" bgcolor="#ffffff" width="100%" class="m_-392315316807726405full">
+                                
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody><tr>
+                                        <td style="font-family:&#39;Open Sans&#39;,sans-serif;padding:50px 0px 20px 40px;font-size:20px;font-weight:600;text-transform:uppercase" class="m_-392315316807726405corPrincipal">OLÁ, DALGISA BORGES
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family:&#39;Open Sans&#39;,sans-serif;font-weight:600;padding:20px 0px 20px 40px;font-size:20px;vertical-align:top;text-align:left" class="m_-392315316807726405corPrincipal">
+                                            
+    Aviso de boleto gerado
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:0 0 0 0">
+                                            
+     <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF" style="margin-bottom:20px">
+        <tbody><tr> 
+           <td style="font-size:14px;text-transform:none;text-align:left;padding:20px 40px 40px 40px;font-family:Arial;font-weight:100">Prezado(a) DALGISA<br><br><br>Segue link do boleto do(a) PARQUE RESIDENCIAL LARANJEIRAS, vencimento: 05/08/2026<br><br>Caso o link abaixo não funcione, copie e cole o link na barra de endereço do seu navegador:<br><br><div><a style="word-break:break-all" href="https://prosiga.protest.com.br/Operacional/PopUp/pCli_BoletoNovo.aspx?i=19n0WhWcxcLidJ4I+toUlQ==&amp;cont=/d3Ttbo0+qojND590MUTDQ==&amp;log=8GE7Urmp9eE=&amp;baixa=1" target="_blank">https://prosiga.protest.com.br/Operacional/PopUp/pCli_BoletoNovo.aspx?i=19n0WhWcxcLidJ4I+toUlQ==&amp;cont=/d3Ttbo0+qojND590MUTDQ==&amp;log=8GE7Urmp9eE=&amp;baixa=1</a></div><br><br>&quot;&quot;PARA ABERTURA DO SEU BOLETO É NECESSÁRIO INFORMAR OS 4 PRIMEIROS NÚMEROS DO SEU CPF OU CNPJ&quot;&quot;<br><br><br>Acesse o site <a href="https://prosiga.protest.com.br" target="_blank">https://prosiga.protest.com.br</a> para obter uma segunda via do boleto online e também para consultar outras informações do condomínio.<br><br><br>PROTEST<br>Imóveis e Condomínios</td>
+        </tr>
+    </tbody></table>
+
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="display:block;width:100%">
+        <tbody>
+            <tr>
+                <td width="30%" valign="middle" class="m_-392315316807726405bgCorSecundaria" style="width:30%">
+                    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td align="left" valign="top" class="m_-392315316807726405bgCorSecundaria" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:20px;line-height:34px;color:rgb(255,255,255);font-weight:bold;text-transform:uppercase;padding:20px 20px 0px">886796
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top" class="m_-392315316807726405bgCorSecundaria" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:10px;color:rgb(255,255,255);font-weight:normal;text-transform:uppercase;padding:0px 20px 20px">número
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td width="35%" class="m_-392315316807726405bgCorPrincipal" style="width:35%">
+                    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td align="left" valign="top" class="m_-392315316807726405bgCorPrincipal" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:20px;line-height:34px;color:rgb(255,255,255);font-weight:bold;text-transform:uppercase;padding:20px 20px 0px">05/08/2026
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top" class="m_-392315316807726405bgCorPrincipal" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:10px;color:rgb(255,255,255);font-weight:normal;text-transform:uppercase;padding:0px 20px 20px">vencimento
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td width="35%" class="m_-392315316807726405bgCorSecundaria" style="width:35%">
+                    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td align="left" valign="top" class="m_-392315316807726405bgCorSecundaria" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:20px;line-height:34px;color:rgb(255,255,255);font-weight:bold;text-transform:uppercase;padding:20px 20px 0px">R$ 887,66
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top" class="m_-392315316807726405bgCorSecundaria" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:10px;color:rgb(255,255,255);font-weight:normal;text-transform:uppercase;padding:0px 20px 20px">valor
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+                                        </td>
+                                    </tr>
+                                </tbody></table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0px 0px 0px 0px" class="m_-392315316807726405full">
+                                
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td style="text-align:center;vertical-align:top">
+                                                
+
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody><tr>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:12px;font-weight:400;color:rgb(204,204,204);text-align:left;padding:5px 30px;width:100%;vertical-align:bottom">
+                                            ©2026
+                                            <span id="m_-392315316807726405nmAdministradora">PROTEST - AG.COPACABANA.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:12px;font-weight:400;color:rgb(204,204,204);padding:30px;text-align:center;vertical-align:bottom;width:100%" colspan="3"><a href="https://prosiga.protest.com.br/Operacional/RemoverEmail.aspx?r=apXbbdDvHTW3ezligI16jV0aj91302vaS9raTiUNY+8=" style="color:rgb(204,204,204)" target="_blank">Clique aqui caso não queira receber neste e-mail este tipo de mensagem</a>
+                                        </td>
+                                    </tr>
+
+                                </tbody></table>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </td>
+            </tr>
+        </tbody></table>
+        
+        
+    </form>
+</div>
+
+<br><br><div dir="ltr" class="gmail_attr" style="color:rgb(136,136,136)">----------<br>De: <b class="gmail_sendername" dir="auto">PROTEST - AG.COPACABANA.</b> <span dir="auto">&lt;<a href="mailto:naoresponda@protest.com.br">naoresponda@protest.com.br</a>&gt;</span><br>Date: ter., 21 de jul. de 2026 às 05:13<br>To:  &lt;<a href="mailto:dalgizaborges@gmail.com">dalgizaborges@gmail.com</a>&gt;<br></div><br><br>
+
+<u></u>
+
+
+
+
+    
+
+<div style="margin:0px;padding:0px;background-color:rgb(51,51,51)">
+    <form method="post" action="http://./BoletoCobranca.aspx?administradora=6&amp;empreendimento=355" id="m_6059843967679733181form1" target="_blank">
+<input type="hidden" name="__VIEWSTATE" id="m_6059843967679733181__VIEWSTATE" value="0YhWQcZ3GLMa3NF6tVDTL/XEaP9whn9tCf/y6T0nWwm96JNX7Y5z4EcadV6d20yOAq0lM75QuYPeUVKsUEAaQjsnUEE+OJNuNw0YKcPY5S4=">
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="m_6059843967679733181__VIEWSTATEGENERATOR" value="E4C54D2F">
+        <table border="0" cellpadding="0" cellspacing="0" align="center" class="m_6059843967679733181full" style="background-color:rgb(51,51,51);max-width:700px">
+            <tbody><tr>
+                <td style="padding:0px 0px 0px 0px" width="100%">
+                    
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse" class="m_6059843967679733181full">
+                        <tbody><tr>
+                            <td style="padding:0px" bgcolor="#ffffff" width="100%" class="m_6059843967679733181full">
+                                
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody><tr>
+                                        <td style="padding:40px 0px 40px 0px;text-align:center">
+                                            <img id="m_6059843967679733181imEmpreendimento" alt="logo" src="https://prosiga.protest.com.br/Resource/Upload/Administradora/Logotipo/202407171935578395564-Email-250x150.png" style="max-height:150px!important;max-width:250px!important;margin:40px 0px">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:0px 0px 0px 0px" width="600">
+                                            <img id="m_6059843967679733181imEmpreendimentoBanner" alt="banner" src="https://prosiga.protest.com.br/Resource/Upload/Administradora/Banner/202407171940514502765-Email-700x200.png" width="100%" style="max-width:700px;max-height:200px">
+                                        </td>
+                                    </tr>
+                                </tbody></table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0px" bgcolor="#ffffff" width="100%" class="m_6059843967679733181full">
+                                
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody><tr>
+                                        <td style="font-family:&#39;Open Sans&#39;,sans-serif;padding:50px 0px 20px 40px;font-size:20px;font-weight:600;text-transform:uppercase" class="m_6059843967679733181corPrincipal">OLÁ, DALGISA BORGES
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family:&#39;Open Sans&#39;,sans-serif;font-weight:600;padding:20px 0px 20px 40px;font-size:20px;vertical-align:top;text-align:left" class="m_6059843967679733181corPrincipal">
+                                            
+    Aviso de boleto gerado
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:0 0 0 0">
+                                            
+     <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF" style="margin-bottom:20px">
+        <tbody><tr> 
+           <td style="font-size:14px;text-transform:none;text-align:left;padding:20px 40px 40px 40px;font-family:Arial;font-weight:100">Prezado(a) DALGISA<br><br><br>Segue link do boleto do(a) PARQUE RESIDENCIAL LARANJEIRAS, vencimento: 05/08/2026<br><br>Caso o link abaixo não funcione, copie e cole o link na barra de endereço do seu navegador:<br><br><div><a style="word-break:break-all" href="https://prosiga.protest.com.br/Operacional/PopUp/pCli_BoletoNovo.aspx?i=19n0WhWcxcJKV8SSKu7yPQ==&amp;cont=/d3Ttbo0+qojND590MUTDQ==&amp;log=8GE7Urmp9eE=&amp;baixa=1" target="_blank">https://prosiga.protest.com.br/Operacional/PopUp/pCli_BoletoNovo.aspx?i=19n0WhWcxcJKV8SSKu7yPQ==&amp;cont=/d3Ttbo0+qojND590MUTDQ==&amp;log=8GE7Urmp9eE=&amp;baixa=1</a></div><br><br>&quot;&quot;PARA ABERTURA DO SEU BOLETO É NECESSÁRIO INFORMAR OS 4 PRIMEIROS NÚMEROS DO SEU CPF OU CNPJ&quot;&quot;<br><br><br>Acesse o site <a href="https://prosiga.protest.com.br" target="_blank">https://prosiga.protest.com.br</a> para obter uma segunda via do boleto online e também para consultar outras informações do condomínio.<br><br><br>PROTEST<br>Imóveis e Condomínios</td>
+        </tr>
+    </tbody></table>
+
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="display:block;width:100%">
+        <tbody>
+            <tr>
+                <td width="30%" valign="middle" class="m_6059843967679733181bgCorSecundaria" style="width:30%">
+                    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td align="left" valign="top" class="m_6059843967679733181bgCorSecundaria" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:20px;line-height:34px;color:rgb(255,255,255);font-weight:bold;text-transform:uppercase;padding:20px 20px 0px">886797
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top" class="m_6059843967679733181bgCorSecundaria" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:10px;color:rgb(255,255,255);font-weight:normal;text-transform:uppercase;padding:0px 20px 20px">número
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td width="35%" class="m_6059843967679733181bgCorPrincipal" style="width:35%">
+                    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td align="left" valign="top" class="m_6059843967679733181bgCorPrincipal" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:20px;line-height:34px;color:rgb(255,255,255);font-weight:bold;text-transform:uppercase;padding:20px 20px 0px">05/08/2026
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top" class="m_6059843967679733181bgCorPrincipal" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:10px;color:rgb(255,255,255);font-weight:normal;text-transform:uppercase;padding:0px 20px 20px">vencimento
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td width="35%" class="m_6059843967679733181bgCorSecundaria" style="width:35%">
+                    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td align="left" valign="top" class="m_6059843967679733181bgCorSecundaria" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:20px;line-height:34px;color:rgb(255,255,255);font-weight:bold;text-transform:uppercase;padding:20px 20px 0px">R$ 887,66
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top" class="m_6059843967679733181bgCorSecundaria" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:10px;color:rgb(255,255,255);font-weight:normal;text-transform:uppercase;padding:0px 20px 20px">valor
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+                                        </td>
+                                    </tr>
+                                </tbody></table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0px 0px 0px 0px" class="m_6059843967679733181full">
+                                
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td style="text-align:center;vertical-align:top">
+                                                
+
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody><tr>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:12px;font-weight:400;color:rgb(204,204,204);text-align:left;padding:5px 30px;width:100%;vertical-align:bottom">
+                                            ©2026
+                                            <span id="m_6059843967679733181nmAdministradora">PROTEST - AG.COPACABANA.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:12px;font-weight:400;color:rgb(204,204,204);padding:30px;text-align:center;vertical-align:bottom;width:100%" colspan="3"><a href="https://prosiga.protest.com.br/Operacional/RemoverEmail.aspx?r=apXbbdDvHTW3ezligI16jV0aj91302vaS9raTiUNY+8=" style="color:rgb(204,204,204)" target="_blank">Clique aqui caso não queira receber neste e-mail este tipo de mensagem</a>
+                                        </td>
+                                    </tr>
+
+                                </tbody></table>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </td>
+            </tr>
+        </tbody></table>
+        
+        
+    </form>
+</div>
+
+<br><br><div dir="ltr" class="gmail_attr" style="color:rgb(136,136,136)">----------<br>De: <b class="gmail_sendername" dir="auto">PROTEST - AG.COPACABANA.</b> <span dir="auto">&lt;<a href="mailto:naoresponda@protest.com.br">naoresponda@protest.com.br</a>&gt;</span><br>Date: ter., 21 de jul. de 2026 às 05:52<br>To:  &lt;<a href="mailto:dalgizaborges@gmail.com">dalgizaborges@gmail.com</a>&gt;<br></div><br><br>
+
+<u></u>
+
+
+
+
+    
+
+<div style="margin:0px;padding:0px;background-color:rgb(51,51,51)">
+    <form method="post" action="http://./BoletoCobranca.aspx?administradora=6&amp;empreendimento=355" id="m_989906471815572923form1" target="_blank">
+<input type="hidden" name="__VIEWSTATE" id="m_989906471815572923__VIEWSTATE" value="dOZDInm7RrsYvJIZ11KNTacpmyoSq4ksvTataAI6lLCQjcdwB4JpYYFJFC+0JWzNe/cJBnWK4cPIJg5lOMgCDA369lhOnqyacI1Y+X5ljCo=">
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="m_989906471815572923__VIEWSTATEGENERATOR" value="E4C54D2F">
+        <table border="0" cellpadding="0" cellspacing="0" align="center" class="m_989906471815572923full" style="background-color:rgb(51,51,51);max-width:700px">
+            <tbody><tr>
+                <td style="padding:0px 0px 0px 0px" width="100%">
+                    
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse" class="m_989906471815572923full">
+                        <tbody><tr>
+                            <td style="padding:0px" bgcolor="#ffffff" width="100%" class="m_989906471815572923full">
+                                
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody><tr>
+                                        <td style="padding:40px 0px 40px 0px;text-align:center">
+                                            <img id="m_989906471815572923imEmpreendimento" alt="logo" src="https://prosiga.protest.com.br/Resource/Upload/Administradora/Logotipo/202407171935578395564-Email-250x150.png" style="max-height:150px!important;max-width:250px!important;margin:40px 0px">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:0px 0px 0px 0px" width="600">
+                                            <img id="m_989906471815572923imEmpreendimentoBanner" alt="banner" src="https://prosiga.protest.com.br/Resource/Upload/Administradora/Banner/202407171940514502765-Email-700x200.png" width="100%" style="max-width:700px;max-height:200px">
+                                        </td>
+                                    </tr>
+                                </tbody></table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0px" bgcolor="#ffffff" width="100%" class="m_989906471815572923full">
+                                
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody><tr>
+                                        <td style="font-family:&#39;Open Sans&#39;,sans-serif;padding:50px 0px 20px 40px;font-size:20px;font-weight:600;text-transform:uppercase" class="m_989906471815572923corPrincipal">OLÁ, DALGISA BORGES
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family:&#39;Open Sans&#39;,sans-serif;font-weight:600;padding:20px 0px 20px 40px;font-size:20px;vertical-align:top;text-align:left" class="m_989906471815572923corPrincipal">
+                                            
+    Aviso de boleto gerado
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:0 0 0 0">
+                                            
+     <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF" style="margin-bottom:20px">
+        <tbody><tr> 
+           <td style="font-size:14px;text-transform:none;text-align:left;padding:20px 40px 40px 40px;font-family:Arial;font-weight:100">Prezado(a) DALGISA<br><br><br>Segue link do boleto do(a) PARQUE RESIDENCIAL LARANJEIRAS, vencimento: 05/08/2026<br><br>Caso o link abaixo não funcione, copie e cole o link na barra de endereço do seu navegador:<br><br><div><a style="word-break:break-all" href="https://prosiga.protest.com.br/Operacional/PopUp/pCli_BoletoNovo.aspx?i=zxfpmbNnqcCc84hHIaMUZw==&amp;cont=/d3Ttbo0+qojND590MUTDQ==&amp;log=8GE7Urmp9eE=&amp;baixa=1" target="_blank">https://prosiga.protest.com.br/Operacional/PopUp/pCli_BoletoNovo.aspx?i=zxfpmbNnqcCc84hHIaMUZw==&amp;cont=/d3Ttbo0+qojND590MUTDQ==&amp;log=8GE7Urmp9eE=&amp;baixa=1</a></div><br><br>&quot;&quot;PARA ABERTURA DO SEU BOLETO É NECESSÁRIO INFORMAR OS 4 PRIMEIROS NÚMEROS DO SEU CPF OU CNPJ&quot;&quot;<br><br><br>Acesse o site <a href="https://prosiga.protest.com.br" target="_blank">https://prosiga.protest.com.br</a> para obter uma segunda via do boleto online e também para consultar outras informações do condomínio.<br><br><br>PROTEST<br>Imóveis e Condomínios</td>
+        </tr>
+    </tbody></table>
+
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="display:block;width:100%">
+        <tbody>
+            <tr>
+                <td width="30%" valign="middle" class="m_989906471815572923bgCorSecundaria" style="width:30%">
+                    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td align="left" valign="top" class="m_989906471815572923bgCorSecundaria" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:20px;line-height:34px;color:rgb(255,255,255);font-weight:bold;text-transform:uppercase;padding:20px 20px 0px">887197
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top" class="m_989906471815572923bgCorSecundaria" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:10px;color:rgb(255,255,255);font-weight:normal;text-transform:uppercase;padding:0px 20px 20px">número
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td width="35%" class="m_989906471815572923bgCorPrincipal" style="width:35%">
+                    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td align="left" valign="top" class="m_989906471815572923bgCorPrincipal" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:20px;line-height:34px;color:rgb(255,255,255);font-weight:bold;text-transform:uppercase;padding:20px 20px 0px">05/08/2026
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top" class="m_989906471815572923bgCorPrincipal" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:10px;color:rgb(255,255,255);font-weight:normal;text-transform:uppercase;padding:0px 20px 20px">vencimento
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td width="35%" class="m_989906471815572923bgCorSecundaria" style="width:35%">
+                    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td align="left" valign="top" class="m_989906471815572923bgCorSecundaria" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:20px;line-height:34px;color:rgb(255,255,255);font-weight:bold;text-transform:uppercase;padding:20px 20px 0px">R$ 887,66
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top" class="m_989906471815572923bgCorSecundaria" style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:10px;color:rgb(255,255,255);font-weight:normal;text-transform:uppercase;padding:0px 20px 20px">valor
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+                                        </td>
+                                    </tr>
+                                </tbody></table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0px 0px 0px 0px" class="m_989906471815572923full">
+                                
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td style="text-align:center;vertical-align:top">
+                                                
+
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody><tr>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:12px;font-weight:400;color:rgb(204,204,204);text-align:left;padding:5px 30px;width:100%;vertical-align:bottom">
+                                            ©2026
+                                            <span id="m_989906471815572923nmAdministradora">PROTEST - AG.COPACABANA.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family:&quot;Open Sans&quot;,sans-serif;font-size:12px;font-weight:400;color:rgb(204,204,204);padding:30px;text-align:center;vertical-align:bottom;width:100%" colspan="3"><a href="https://prosiga.protest.com.br/Operacional/RemoverEmail.aspx?r=apXbbdDvHTW3ezligI16jV0aj91302vaS9raTiUNY+8=" style="color:rgb(204,204,204)" target="_blank">Clique aqui caso não queira receber neste e-mail este tipo de mensagem</a>
+                                        </td>
+                                    </tr>
+
+                                </tbody></table>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </td>
+            </tr>
+        </tbody></table>
+        
+        
+    </form>
+</div>
+
+<br><br></div></div>

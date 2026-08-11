@@ -21,19 +21,12 @@ public class GmailDraftServiceTest
         {
             ApartamentosGerenciados = apartamentosGerenciados,
             Assunto = "Boleto ap {{apto}}",
-            Corpo =
-                "O{{plural}} boleto{{plural}} do{{plural}} apto{{plural}} {{apto}} vence em {{dtVenc}}.",
+            Corpo = "O boleto{{plural}} do apto{{plural}} {{apto}} vence em {{dtVenc}}.",
             PastaDestino = "/qualquer/caminho/{{apto}}",
         };
 
     private static List<Boleto> CriaBoletos(params string[] apartamentos) =>
-        [
-            .. apartamentos.Select(apto => new Boleto(
-                "https://link",
-                apto,
-                new DateTime(2026, 8, 5)
-            )),
-        ];
+        [.. apartamentos.Select(apto => new Boleto("https://link", apto, new DateTime(2026, 8, 5)))];
 
     [Fact]
     public void Construtor_DeveFiltrarSomenteBoletosDeApartamentosGerenciados()
@@ -53,8 +46,8 @@ public class GmailDraftServiceTest
         List<Boleto> boletos = CriaBoletos("1503-A", "1508-A");
         AppConfig appConf = CriaAppConfigDeTeste(["1509-A"]);
 
-        Assert.Throws<InvalidOperationException>(() =>
-            new GmailDraftService(boletos, appConf, GmailServiceFalso)
+        Assert.Throws<InvalidOperationException>(
+            () => new GmailDraftService(boletos, appConf, GmailServiceFalso)
         );
     }
 
@@ -110,10 +103,18 @@ public class GmailDraftServiceTest
         // do corpo, então testamos indiretamente via SubstituiPalavraChave, que é
         // o mesmo mecanismo usado internamente para resolver {{plural}}.
         string plural = boletos.Count > 1 ? "s" : "";
-        string corpoComPlural = service.SubstituiPalavraChave(appConf.Corpo, plural, "{{plural}}");
+        string corpoComPlural = service.SubstituiPalavraChave(
+            appConf.Corpo,
+            plural,
+            "{{plural}}"
+        );
+        // Segunda substituição: resolve {{apto}} usando o padrão (lista de
+        // apartamentos já filtrada), para o texto final não sobrar nenhum marcador.
+        corpoComPlural = service.SubstituiPalavraChave(corpoComPlural);
 
         Assert.DoesNotContain("{{plural}}", corpoComPlural);
-        Assert.Contains("O boleto do apto", corpoComPlural);
+        Assert.DoesNotContain("{{apto}}", corpoComPlural);
+        Assert.Contains("O boleto do apto 1509-A", corpoComPlural);
     }
 
     [Fact]
@@ -124,7 +125,12 @@ public class GmailDraftServiceTest
         GmailDraftService service = new(boletos, appConf, GmailServiceFalso);
 
         string plural = boletos.Count > 1 ? "s" : "";
-        string corpoComPlural = service.SubstituiPalavraChave(appConf.Corpo, plural, "{{plural}}");
+        string corpoComPlural = service.SubstituiPalavraChave(
+            appConf.Corpo,
+            plural,
+            "{{plural}}"
+        );
+        corpoComPlural = service.SubstituiPalavraChave(corpoComPlural);
 
         Assert.DoesNotContain("{{plural}}", corpoComPlural);
         // "boleto{{plural}}" -> "boletos", "apto{{plural}}" -> "aptos" (o "O" do
