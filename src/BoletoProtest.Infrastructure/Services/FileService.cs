@@ -9,6 +9,8 @@ public class FileService(string pastaDestino)
 
     public string CaminhoCompletoDoArquivo(Boleto boleto)
     {
+        Console.WriteLine("Buscando caminho completo do arquivo...");
+
         string nomeArquivo = $"Vencimento_{boleto.Vencimento:dd-MM-yyyy}.pdf";
 
         return Path.Combine(_pastaDestino, nomeArquivo);
@@ -20,6 +22,8 @@ public class FileService(string pastaDestino)
 
         try
         {
+            Console.WriteLine("Salvando arquivo PDF...");
+
             await File.WriteAllBytesAsync(caminhoCompleto, conteudoPdf);
         }
         catch (DirectoryNotFoundException ex)

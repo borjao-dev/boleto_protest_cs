@@ -9,8 +9,10 @@ namespace BoletoProtest.Infrastructure.Services;
 
 public static class PdfService
 {
-    public static string BuscaNumeroApartamentoFormatado(byte[] bytesPdf, string senha)
+    public static string FormataNumeroApartamento(byte[] bytesPdf, string senha)
     {
+        Console.WriteLine("Formatando número do apartamento...");
+
         string apto = ExtraiNumeroApartamento(bytesPdf, senha); // A - AP 1509
 
         if (!apto.Contains(" - "))
@@ -27,6 +29,8 @@ public static class PdfService
 
     private static string ExtraiNumeroApartamento(byte[] bytesPdf, string senha)
     {
+        Console.WriteLine("Extraindo número do apartamento dentro do PDF...");
+
         ArgumentNullException.ThrowIfNull(bytesPdf);
         if (bytesPdf.Length == 0)
             throw new ArgumentException("PDF byte vazio.", nameof(bytesPdf));

@@ -13,6 +13,8 @@ public static class BoletoParserService
 {
     public static List<BoletoEncontrado> ExtraiBoletosDoConteudo(string conteudo, string urlBoleto)
     {
+        Console.WriteLine("Extraindo boletos do conteudo...");
+
         List<BoletoEncontrado> boletosEncontrados = [];
 
         DateTime? vencimento = ExtraiVencimento(conteudo);
@@ -34,6 +36,8 @@ public static class BoletoParserService
 
     internal static DateTime? ExtraiVencimento(string conteudo)
     {
+        Console.WriteLine("Extraindo vencimento...");
+
         Match matchData = Regex.Match(conteudo, @"vencimento:\s*(\d{2}/\d{2}/\d{4})");
 
         if (!matchData.Success)
@@ -67,14 +71,13 @@ public static class BoletoParserService
     // caminho específico.
     internal static List<string> ExtraiUrlsDeBoletos(string conteudo, string urlBoleto)
     {
+        Console.WriteLine("Extraindo URLs dos boletos...");
+
         MatchCollection matchesUrl = Regex.Matches(
             conteudo,
             Regex.Escape(urlBoleto) + @"/PopUp/pCli_BoletoNovo\.aspx[^\s""<>]*"
         );
 
-        return
-        [
-            .. matchesUrl.Select(match => match.Value.Replace("&amp;", "&")).Distinct(),
-        ];
+        return [.. matchesUrl.Select(match => match.Value.Replace("&amp;", "&")).Distinct()];
     }
 }

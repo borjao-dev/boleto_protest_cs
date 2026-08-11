@@ -7,10 +7,14 @@ public class ConfigurationService
 {
     public static AppConfig AppConfiguration()
     {
+        System.Console.WriteLine("Configurando a aplicação...");
+
         string env = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Production";
         string basePath = AppContext.BaseDirectory;
         string baseJsonFile = "appsettings.json";
         string jsonFile = $"appsettings.{env}.json";
+
+        System.Console.WriteLine($"Ambiente: {env}");
 
         IConfiguration conf = new ConfigurationBuilder()
             .SetBasePath(basePath)

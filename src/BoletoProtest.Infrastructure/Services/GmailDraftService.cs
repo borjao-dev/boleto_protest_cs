@@ -116,6 +116,8 @@ public class GmailDraftService
 
     public async Task<Draft> CriaRascunho(AppConfig appConf)
     {
+        Console.WriteLine("Montando rascunho do Gmail...");
+
         MimeMessage mensagem = MontaMimeDoRascunho(appConf);
         string rawBase64Url = SerializaParaBase64Url(mensagem);
 
