@@ -15,6 +15,7 @@ public class Program
         GmailMessageService gmailMessageService = new(gmailService);
         List<Boleto> boletos = await gmailMessageService.BaixaPdf(appConf);
 
+        Console.WriteLine($"Qtd _boletos: {boletos.Count}");
         if (boletos.Count == 0)
         {
             // Não é um erro: significa apenas que não há boleto novo neste ciclo
@@ -28,5 +29,11 @@ public class Program
         Draft rascunho = await gmailDraftService.CriaRascunho(appConf);
 
         Console.WriteLine($"Rascunho criado com sucesso! Id: {rascunho.Id}");
+
+        Console.WriteLine("Abrindo rascunho no GoogleChrome...");
+        gmailDraftService.AbreRascunhoDireto(rascunho);
+
+        Console.WriteLine("\nFINALIZADO!");
+        await Task.Delay(5000); //Aguarda 5 segundos antes de fechar a janela
     }
 }

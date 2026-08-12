@@ -1,4 +1,5 @@
 using System.Buffers.Text;
+using System.Diagnostics;
 using BoletoProtest.Core.Models;
 using Google.Apis.Gmail.v1;
 using Google.Apis.Gmail.v1.Data;
@@ -36,11 +37,11 @@ public class GmailDraftService
         }
 
         _gmailService = gmailService;
-        _apartamentos = [.. _boletos.Select(boleto => boleto.Apartamento)];
+        _apartamentos = [.. _boletos.Select(boleto => boleto.Apartamento).Distinct()];
     }
 
     internal string SubstituiPalavraChave(
-        string template,
+        string texto,
         string? substituto = null,
         string chave = "{{apto}}"
     )
@@ -48,21 +49,21 @@ public class GmailDraftService
         // is null (não IsNullOrEmpty!) — string vazia ("") é um valor de substituição
         // VÁLIDO e intencional (ex: {{plural}} no singular vira ""), diferente de
         // "nenhum valor foi passado" (null, aí sim usa o padrão: lista de apartamentos).
-        if (substituto is null)
-        {
-            substituto = string.Join(", ", _apartamentos);
-        }
+        substituto ??= string.Join(", ", _apartamentos);
 
-        return template.Replace(chave, substituto);
+        return texto.Replace(chave, substituto);
     }
 
     public MimeMessage MontaMimeDoRascunho(AppConfig appConf)
     {
         var mensagem = new MimeMessage();
+        string plural = _boletos.Count > 1 ? "s" : "";
 
         mensagem.From.Add(new MailboxAddress(appConf.Nome, appConf.Remetente));
         mensagem.To.Add(new MailboxAddress(appConf.NomeDestinatario, appConf.Destinatario));
+
         mensagem.Subject = SubstituiPalavraChave(appConf.Assunto);
+        mensagem.Subject = SubstituiPalavraChave(mensagem.Subject, plural, "{{plural}}");
 
         // Todos os boletos da mesma leva compartilham o mesmo vencimento (decisão
         // tomada no início do projeto), então basta ler do primeiro — já é a data
@@ -75,7 +76,6 @@ public class GmailDraftService
             "{{dtVenc}}"
         );
 
-        string plural = _boletos.Count > 1 ? "s" : "";
         corpoRascunho = SubstituiPalavraChave(corpoRascunho, plural, "{{plural}}");
 
         corpoRascunho = SubstituiPalavraChave(corpoRascunho);
@@ -124,5 +124,23 @@ public class GmailDraftService
         Draft rascunho = new() { Message = new Message { Raw = rawBase64Url } };
 
         return await _gmailService.Users.Drafts.Create(rascunho, "me").ExecuteAsync();
+    }
+
+    public void AbreRascunhoDireto(Draft rascunho)
+    {
+        // A interface do Gmail usa o Message ID no parâmetro `compose`
+        string messageId = rascunho.Message?.Id ?? rascunho.Id;
+
+        // A hash `#inbox?compose=` força o Gmail a abrir o modal de edição do rascunho diretamente
+        string url = $"https://mail.google.com/mail/u/0/#inbox?compose={messageId}";
+
+        try
+        {
+            Process.Start(new ProcessStartInfo { FileName = url, UseShellExecute = true });
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Não foi possível abrir o navegador: {ex.Message}");
+        }
     }
 }
