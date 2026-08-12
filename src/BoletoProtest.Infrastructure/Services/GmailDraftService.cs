@@ -57,7 +57,9 @@ public class GmailDraftService
     public MimeMessage MontaMimeDoRascunho(AppConfig appConf)
     {
         var mensagem = new MimeMessage();
-        string plural = _boletos.Count > 1 ? "s" : "";
+        string plural = _apartamentos.Count > 1 ? "s" : "";
+        Console.WriteLine($"_boletos: {_boletos.Count}");
+        Console.WriteLine($"_apartamentos: {_apartamentos.Count}");
 
         mensagem.From.Add(new MailboxAddress(appConf.Nome, appConf.Remetente));
         mensagem.To.Add(new MailboxAddress(appConf.NomeDestinatario, appConf.Destinatario));
