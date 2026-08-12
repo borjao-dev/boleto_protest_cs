@@ -33,6 +33,9 @@ public class Program
         Console.WriteLine("Abrindo rascunho no GoogleChrome...");
         gmailDraftService.AbreRascunhoDireto(rascunho);
 
+        // Console.WriteLine("\nPressione qualquer tecla para sair...");
+        // Console.ReadKey();
+
         Console.WriteLine("\nFINALIZADO!");
         await Task.Delay(5000); //Aguarda 5 segundos antes de fechar a janela
     }
