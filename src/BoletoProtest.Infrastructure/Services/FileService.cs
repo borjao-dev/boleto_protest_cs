@@ -11,7 +11,7 @@ public class FileService(string pastaDestino)
     {
         Console.WriteLine("Buscando caminho completo do arquivo...");
 
-        string nomeArquivo = $"Vencimento_{boleto.Vencimento:dd-MM-yyyy}.pdf";
+        string nomeArquivo = $"{boleto.Apartamento}_vencimento_{boleto.Vencimento:dd-MM-yyyy}.pdf";
 
         return Path.Combine(_pastaDestino, nomeArquivo);
     }
