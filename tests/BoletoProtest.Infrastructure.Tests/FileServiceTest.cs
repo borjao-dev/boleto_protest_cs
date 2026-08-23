@@ -25,14 +25,17 @@ public class FileServiceTest : IDisposable
     }
 
     [Fact]
-    public void CaminhoCompletoDoArquivo_DeveMontarNomeComVencimentoFormatado()
+    public void CaminhoCompletoDoArquivo_DeveMontarNomeComApartamentoEVencimentoFormatado()
     {
         FileService fileService = new(_pastaTemporaria);
         Boleto boleto = new("https://link.qualquer", "1509-A", new DateTime(2026, 8, 5));
 
         string caminho = fileService.CaminhoCompletoDoArquivo(boleto);
 
-        Assert.Equal(Path.Combine(_pastaTemporaria, "Vencimento_05-08-2026.pdf"), caminho);
+        Assert.Equal(
+            Path.Combine(_pastaTemporaria, "1509-A_vencimento_05-08-2026.pdf"),
+            caminho
+        );
     }
 
     [Fact]
@@ -81,5 +84,49 @@ public class FileServiceTest : IDisposable
         await Assert.ThrowsAsync<DirectoryNotFoundException>(() =>
             fileService.SalvaArquivoPdf([1, 2, 3], boleto)
         );
+    }
+
+    [Fact]
+    public void JaExiste_ComArquivoNaoSalvo_DeveRetornarFalse()
+    {
+        FileService fileService = new(_pastaTemporaria);
+        Boleto boleto = new("https://link.qualquer", "1509-A", new DateTime(2026, 8, 5));
+
+        Assert.False(fileService.JaExiste(boleto));
+    }
+
+    [Fact]
+    public async Task JaExiste_ComArquivoJaSalvo_DeveRetornarTrue()
+    {
+        FileService fileService = new(_pastaTemporaria);
+        Boleto boleto = new("https://link.qualquer", "1509-A", new DateTime(2026, 8, 5));
+
+        await fileService.SalvaArquivoPdf([1, 2, 3], boleto);
+
+        Assert.True(fileService.JaExiste(boleto));
+    }
+
+    [Fact]
+    public async Task JaExiste_ComVencimentoDiferente_DeveRetornarFalse()
+    {
+        FileService fileService = new(_pastaTemporaria);
+        Boleto boletoSalvo = new("https://link.qualquer", "1509-A", new DateTime(2026, 8, 5));
+        Boleto boletoNovo = new("https://link.qualquer", "1509-A", new DateTime(2026, 9, 5));
+
+        await fileService.SalvaArquivoPdf([1, 2, 3], boletoSalvo);
+
+        Assert.False(fileService.JaExiste(boletoNovo));
+    }
+
+    [Fact]
+    public async Task JaExiste_ComApartamentoDiferente_DeveRetornarFalse()
+    {
+        FileService fileService = new(_pastaTemporaria);
+        Boleto boletoSalvo = new("https://link.qualquer", "1509-A", new DateTime(2026, 8, 5));
+        Boleto boletoOutroApto = new("https://link.qualquer", "1508-A", new DateTime(2026, 8, 5));
+
+        await fileService.SalvaArquivoPdf([1, 2, 3], boletoSalvo);
+
+        Assert.False(fileService.JaExiste(boletoOutroApto));
     }
 }
