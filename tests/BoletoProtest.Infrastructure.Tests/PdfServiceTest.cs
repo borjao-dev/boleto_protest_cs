@@ -19,7 +19,7 @@ public class PdfServiceTest
     [InlineData("Boleto_1508-A.pdf", "1508-A")]
     [InlineData("Boleto_1509-A.pdf", "1509-A")]
     [InlineData("Boleto_1515-B.pdf", "1515-B")]
-    public void BuscaNumeroApartamentoFormatado_ComOsQuatroPdfsReais_DeveExtrairApartamentoCorreto(
+    public void FormataNumeroApartamento_ComOsQuatroPdfsReais_DeveExtrairApartamentoCorreto(
         string nomeArquivo,
         string apartamentoEsperado
     )
@@ -27,13 +27,13 @@ public class PdfServiceTest
         string caminhoPdf = Path.Combine(PastaTestData, nomeArquivo);
         byte[] pdfBytes = File.ReadAllBytes(caminhoPdf);
 
-        string aptoFormatado = PdfService.BuscaNumeroApartamentoFormatado(pdfBytes, SenhaReal);
+        string aptoFormatado = PdfService.FormataNumeroApartamento(pdfBytes, SenhaReal);
 
         Assert.Equal(apartamentoEsperado, aptoFormatado);
     }
 
     [Fact]
-    public void BuscaNumeroApartamentoFormatado_ComSenhaErrada_AindaConsegueLerConteudo()
+    public void FormataNumeroApartamento_ComSenhaErrada_AindaConsegueLerConteudo()
     {
         // Comportamento REAL observado (não assumido): os PDFs da PROTEST não têm
         // restrição de LEITURA — só de edição/impressão, então PdfPig consegue abrir
@@ -43,36 +43,36 @@ public class PdfServiceTest
         string caminhoPdf = Path.Combine(PastaTestData, "Boleto_1509-A.pdf");
         byte[] pdfBytes = File.ReadAllBytes(caminhoPdf);
 
-        string aptoFormatado = PdfService.BuscaNumeroApartamentoFormatado(pdfBytes, "0000");
+        string aptoFormatado = PdfService.FormataNumeroApartamento(pdfBytes, "0000");
 
         Assert.Equal("1509-A", aptoFormatado);
     }
 
     [Fact]
-    public void BuscaNumeroApartamentoFormatado_ComBytesVazios_DeveLancarArgumentException()
+    public void FormataNumeroApartamento_ComBytesVazios_DeveLancarArgumentException()
     {
         byte[] bytesVazios = [];
 
         Assert.Throws<ArgumentException>(
-            () => PdfService.BuscaNumeroApartamentoFormatado(bytesVazios, SenhaReal)
+            () => PdfService.FormataNumeroApartamento(bytesVazios, SenhaReal)
         );
     }
 
     [Fact]
-    public void BuscaNumeroApartamentoFormatado_ComBytesNulos_DeveLancarArgumentNullException()
+    public void FormataNumeroApartamento_ComBytesNulos_DeveLancarArgumentNullException()
     {
         Assert.Throws<ArgumentNullException>(
-            () => PdfService.BuscaNumeroApartamentoFormatado(null!, SenhaReal)
+            () => PdfService.FormataNumeroApartamento(null!, SenhaReal)
         );
     }
 
     [Fact]
-    public void BuscaNumeroApartamentoFormatado_ComBytesQueNaoSaoPdf_DeveLancarPdfDocumentFormatException()
+    public void FormataNumeroApartamento_ComBytesQueNaoSaoPdf_DeveLancarPdfDocumentFormatException()
     {
         byte[] bytesLixo = "isto não é um PDF"u8.ToArray();
 
         Assert.ThrowsAny<Exception>(
-            () => PdfService.BuscaNumeroApartamentoFormatado(bytesLixo, SenhaReal)
+            () => PdfService.FormataNumeroApartamento(bytesLixo, SenhaReal)
         );
     }
 }

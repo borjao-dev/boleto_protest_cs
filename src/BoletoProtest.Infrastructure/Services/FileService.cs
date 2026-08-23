@@ -16,6 +16,16 @@ public class FileService(string pastaDestino)
         return Path.Combine(_pastaDestino, nomeArquivo);
     }
 
+    // Checa se já existe um PDF salvo para este boleto específico (mesmo apartamento
+    // + mesmo vencimento), antes de baixar/sobrescrever. Usado para evitar reprocessar
+    // um boleto que já foi baixado numa execução anterior do programa.
+    public bool JaExiste(Boleto boleto)
+    {
+        string caminhoCompleto = CaminhoCompletoDoArquivo(boleto);
+
+        return File.Exists(caminhoCompleto);
+    }
+
     public async Task SalvaArquivoPdf(byte[] conteudoPdf, Boleto boleto)
     {
         string caminhoCompleto = CaminhoCompletoDoArquivo(boleto);

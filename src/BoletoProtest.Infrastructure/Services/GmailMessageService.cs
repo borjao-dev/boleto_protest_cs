@@ -9,24 +9,24 @@ public class GmailMessageService(GmailService gmailService)
 {
     private readonly GmailService _gmailService = gmailService;
 
-    private async Task<List<Message>> BuscaMensagensGmail(AppConfig appConf)
+    // A PROTEST manda UM email por apartamento (não um único email com vários
+    // boletos empilhados, como um teste anterior com email encaminhado sugeria).
+    // Os 4 emails chegam "aglomerados" (mesmo dia/horário aproximado). Por isso,
+    // buscamos vários emails recentes, não só o último, e depois agrupamos pelos
+    // que têm o MESMO vencimento do mais recente — critério robusto que não
+    // depende de "quantos emails" chegam, só da data real que os relaciona.
+    private async Task<List<Message>> BuscaMensagensRecentes(AppConfig appConf)
     {
         Console.WriteLine("Buscando mensagens no Gmail...");
 
-        // Formato EUA
-        DateTime hoje = DateTime.Today; // 8/11/2026 12:00:00 AM
-        DateTime inicioMesAtual = new(hoje.Year, hoje.Month, 1); // 8/1/2026 12:00:00 AM
-        DateTime inicioMesAnterior = inicioMesAtual.AddMonths(-1); // 7/1/2026 12:00:00 AM
-
+        // newer_than: corte de segurança, evita processar anos de histórico
+        // acumulado — não é o critério de escolha em si (isso é o vencimento).
         string busca =
-            $"subject:\"{appConf.AssuntoBusca}\" from:\"{appConf.Remetente}\" after:{inicioMesAnterior:yyyy/MM/dd} before:{inicioMesAtual:yyyy/MM/dd}";
-
-        Console.WriteLine($"string busca: {busca}");
+            $"subject:\"{appConf.AssuntoBusca}\" from:\"{appConf.Remetente}\" newer_than:2m";
 
         UsersResource.MessagesResource.ListRequest listagem = _gmailService.Users.Messages.List(
             "me"
         );
-
         listagem.Q = busca;
 
         ListMessagesResponse idsEncontrados = await listagem.ExecuteAsync();
@@ -46,28 +46,68 @@ public class GmailMessageService(GmailService gmailService)
 
             mensagens.Add(mensagemCompleta);
         }
-        Console.WriteLine($"{mensagens.Count} mensagens encontradas.");
+
+        Console.WriteLine($"{mensagens.Count} mensagens encontradas nos últimos 2 meses.");
 
         return mensagens;
+    }
+
+    private static string ExtraiConteudo(Message mensagem)
+    {
+        string corpo = AuxMultipart(mensagem.Payload);
+
+        if (string.IsNullOrEmpty(corpo))
+        {
+            return "";
+        }
+
+        byte[] bytes = FromBase64UrlString(corpo);
+        return Encoding.UTF8.GetString(bytes);
     }
 
     private async Task<List<BoletoEncontrado>> FiltraBoletosEncontrados(AppConfig appConf)
     {
         Console.WriteLine("Filtrando boletos encontrados...");
 
-        List<Message> mensagensGmail = await BuscaMensagensGmail(appConf);
+        List<Message> mensagens = await BuscaMensagensRecentes(appConf);
 
+        if (mensagens.Count == 0)
+        {
+            return [];
+        }
+
+        // Descobre o vencimento do email mais recente (por InternalDate real,
+        // não pela ordem que a API devolve).
+        Message maisRecente = mensagens.MaxBy(mensagem => mensagem.InternalDate ?? 0)!;
+        string conteudoMaisRecente = ExtraiConteudo(maisRecente);
+        DateTime? vencimentoAlvo = BoletoParserService.ExtraiVencimento(conteudoMaisRecente);
+
+        if (vencimentoAlvo is null)
+        {
+            return [];
+        }
+
+        Console.WriteLine($"Vencimento alvo (lote atual): {vencimentoAlvo:dd/MM/yyyy}");
+
+        // Agrupa todos os emails com o MESMO vencimento do mais recente — é o
+        // "lote" de boletos daquele mês, independente de quantos emails chegaram.
         List<BoletoEncontrado> boletosEncontrados = [];
 
-        foreach (Message mensagem in mensagensGmail)
+        foreach (Message mensagem in mensagens)
         {
-            string corpo = AuxMultipart(mensagem.Payload);
+            string conteudo = ExtraiConteudo(mensagem);
 
-            if (string.IsNullOrEmpty(corpo))
+            if (string.IsNullOrEmpty(conteudo))
+            {
                 continue;
+            }
 
-            byte[] bytes = FromBase64UrlString(corpo);
-            string conteudo = Encoding.UTF8.GetString(bytes);
+            DateTime? vencimentoDesteEmail = BoletoParserService.ExtraiVencimento(conteudo);
+
+            if (vencimentoDesteEmail != vencimentoAlvo)
+            {
+                continue;
+            }
 
             boletosEncontrados.AddRange(
                 BoletoParserService.ExtraiBoletosDoConteudo(conteudo, appConf.UrlBoleto)
@@ -101,10 +141,21 @@ public class GmailMessageService(GmailService gmailService)
 
             // Só agora, com o apartamento já extraído do PDF, dá pra saber a pasta
             // final certa (cada apartamento tem sua própria pasta no PC da Dalgiza).
-            string pastaDoApartamento = appConf.PastaDestino.Replace("{{apto}}", numeroApartamento);
+            string pastaDoApartamento = appConf.PastaDestino.Replace(
+                "{{apto}}",
+                numeroApartamento
+            );
             FileService fileService = new(pastaDoApartamento);
 
             Boleto boleto = new(encontrado.Link, numeroApartamento, encontrado.Vencimento);
+
+            if (fileService.JaExiste(boleto))
+            {
+                Console.WriteLine(
+                    $"Boleto do apto {numeroApartamento}, vencimento {encontrado.Vencimento:dd/MM/yyyy}, já existe — ignorando."
+                );
+                continue;
+            }
 
             await fileService.SalvaArquivoPdf(bytes, boleto);
 
