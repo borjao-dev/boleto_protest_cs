@@ -1,0 +1,56 @@
+# compose.yaml - put at the solution root (same folder as the .sln)
+#
+# Usage (podman compose or podman-compose):
+#   podman compose run --rm test           # run the xUnit suite
+#   podman compose run --rm publish-win    # self-contained Windows .exe -> publish/win-x64
+#   podman compose run --rm publish-linux  # self-contained Linux binary  -> publish/linux-x64
+#   podman compose run --rm shell          # interactive shell inside the SDK container
+#
+# Use "run --rm" (not "up") so only the service you want executes.
+# The app itself (Gmail OAuth) is NOT run here: it needs a browser and a
+# localhost callback, which do not work well inside a container.
+
+name: boletoprotest
+
+# Shared base for every service (YAML anchor, DRY)
+x-dotnet: &dotnet
+  image: mcr.microsoft.com/dotnet/sdk:10.0
+  working_dir: /src
+  volumes:
+    # ":Z" relabels the mount for SELinux (needed on Fedora)
+    - .:/src:Z
+    # Named volume keeps the NuGet cache between runs (faster restores)
+    - nuget-cache:/root/.nuget/packages
+  environment:
+    DOTNET_CLI_TELEMETRY_OPTOUT: "1"
+    DOTNET_NOLOGO: "1"
+    DOTNET_SKIP_FIRST_TIME_EXPERIENCE: "1"
+
+services:
+  test:
+    <<: *dotnet
+    command: dotnet test --nologo
+
+  publish-win:
+    <<: *dotnet
+    # Set APP_PROJECT to the entry-point .csproj (the one that builds the .exe)
+    command: >
+      dotnet publish ${APP_PROJECT:-src/BoletoProtest.Console/BoletoProtest.Console.csproj}
+      -c Release -r win-x64 --self-contained
+      -p:PublishSingleFile=true -o /src/publish/win-x64
+
+  publish-linux:
+    <<: *dotnet
+    command: >
+      dotnet publish ${APP_PROJECT:-src/BoletoProtest.Console/BoletoProtest.Console.csproj}
+      -c Release -r linux-x64 --self-contained
+      -p:PublishSingleFile=true -o /src/publish/linux-x64
+
+  shell:
+    <<: *dotnet
+    command: bash
+    stdin_open: true
+    tty: true
+
+volumes:
+  nuget-cache:
