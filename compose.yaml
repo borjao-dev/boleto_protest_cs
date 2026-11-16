@@ -54,3 +54,4 @@ services:
 
 volumes:
   nuget-cache:
+    name: shared-nuget-cache
